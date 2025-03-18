@@ -1,0 +1,74 @@
+<% layout("/layouts/boilerplate.ejs") %>
+
+
+  <!-- <form action="#" method="POST">
+    <h2>Registration Form</h2>
+
+    <label for="name">Full Name:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="phone">Phone:</label>
+    <input type="tel" id="phone" name="phone" required>
+
+    <label for="address">Address:</label>
+    <input type="text" id="address" name="address">
+
+    <label for="role">Role:</label>
+    <select id="role" name="role">
+      <option value="student">Student</option>
+      <option value="teacher">Teacher</option>
+      <option value="admin">Admin</option>
+    </select>
+
+    <button type="submit">Submit</button>
+    <button type="reset" style="background-color: #dc3545;">Reset</button>
+  </form> -->
+
+  <div class="modal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Modal body text goes here.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div>
+    <form action="/admin/allocation/<%= student._id %>" method="POST">
+      <div class="mb-3">
+        <label for="studentId" class="form-label">Student ID:</label>
+        <input type="text" class="form-control" value="<%= student.studentId %>" id="studentId" name="studentId"
+          required>
+      </div>
+      <div class="mb-3">
+        <label for="studentName" class="form-label">Student Name:</label>
+        <input type="text" class="form-control" value="<%= student.name %>" id="studentName" name="studentName"
+          required>
+      </div>
+      <div class="mb-3">
+        <label for="roomNumber" class="form-label">Room Number:</label>
+        <select name="roomId" class="form-control" id="roomNumber" required>
+          <option value="" disabled selected>Select a room</option>
+          <% rooms.forEach(room=> { %>
+            <option value="<%= room._id%>"> Section : <%= room.section %>, Room : <%= room.roomNo %>, Bed : <%=
+                    room.bedNo %>
+            </option>
+            <% }); %>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-success w-100">Assign</button>
+    </form>
+  </div>

@@ -1,0 +1,55 @@
+  
+
+.profile_payment_details{
+    margin-top: 2rem;
+    padding: 2rem;
+    display: flex;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0.2rem 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.2);
+    margin: auto;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.profile_box {
+    width: 40%;
+    
+}
+
+.profile-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #007BFF;
+    margin-bottom: 15px;
+}
+
+.profile-info {
+    text-align: left;
+    margin-top: 15px;
+}
+
+.profile-info p {
+    margin: 8px 0;
+    font-size: 16px;
+}
+
+strong {
+    color: #007BFF;
+}
+.payment_box{
+    width: 40%;
+    
+}
+.table_payment{
+    width: 100%;
+    border: 1px solid;
+    text-align: center;
+    
+}
+.table_payment th, td{
+    padding: 1rem;
+}
+

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Profile - Hostel Management</title>
+    <link rel="stylesheet" href="/css/style.css"> <!-- You can link your external CSS file -->
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f9; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .header { text-align: center; margin-bottom: 30px; }
+        .header h1 { font-size: 36px; }
+        .profile-info, .actions { display: flex; justify-content: space-between; margin-bottom: 30px; }
+        .profile-info div, .actions div { flex: 1; margin: 0 10px; padding: 20px; background-color: white; border-radius: 5px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); }
+        .actions button { padding: 10px 20px; background-color: #4CAF50; color: white; border: none; cursor: pointer; margin-top: 20px; border-radius: 5px; }
+        .actions button:hover { background-color: #45a049; }
+        table { width: 100%; border-collapse: collapse; margin-top: 30px; }
+        th, td { padding: 12px; border: 1px solid #ddd; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .footer { text-align: center; font-size: 14px; color: gray; margin-top: 40px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Hard coded data</h1>
+            <h1>Not functional</h1>
+            <h1>Admin Profile - Hostel Management</h1>
+            <p>Welcome, Admin! Manage your hostel with ease.</p>
+        </div>
+
+        <div class="profile-info">
+            <div>
+                <h3>Admin Information</h3>
+                <p><strong>Name:</strong> John Doe</p>
+                <p><strong>Email:</strong> admin@example.com</p>
+                <p><strong>Role:</strong> Admin</p>
+                <p><strong>Last Login:</strong> 2025-02-05 10:00 AM</p>
+            </div>
+            <div>
+                <h3>Quick Stats</h3>
+                <p><strong>Total Students:</strong> 120</p>
+                <p><strong>Total Rooms:</strong> 50</p>
+                <p><strong>Total Payments:</strong> ₹500,000</p>
+                <p><strong>Pending Requests:</strong> 5</p>
+            </div>
+        </div>
+
+        <div class="actions">
+            <div>
+                <h3>Manage Students</h3>
+                <button onclick="location.href='/admin/manage-students'">View Students</button>
+            </div>
+            <div>
+                <h3>Manage Rooms</h3>
+                <button onclick="location.href='/admin/manage-rooms'">View Rooms</button>
+            </div>
+            <div>
+                <h3>Payments</h3>
+                <button onclick="location.href='/admin/payments'">View Payments</button>
+            </div>
+            <div>
+                <h3>Reports</h3>
+                <button onclick="location.href='/admin/reports'">View Reports</button>
+            </div>
+        </div>
+
+        <h2>Recent Activities</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Activity</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2025-02-05</td>
+                    <td>Student Added</td>
+                    <td>John Doe was added to the system.</td>
+                </tr>
+                <tr>
+                    <td>2025-02-04</td>
+                    <td>Room Allocation</td>
+                    <td>Room 101 was allocated to Jane Smith.</td>
+                </tr>
+                <tr>
+                    <td>2025-02-03</td>
+                    <td>Payment Received</td>
+                    <td>₹10,000 payment received from student XYZ.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="footer">
+            <p>&copy; 2025 Hostel Management System. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

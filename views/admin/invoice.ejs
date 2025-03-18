@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hostel Bill</title>
+    <link rel="stylesheet" href="/css/style.css">     <!-- add print option for screen on clicking button -->
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .invoice-container { max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; background: #f9f9f9; }
+        .header { text-align: center; }
+        .details, .payment-breakdown { margin-top: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        .footer { margin-top: 20px; text-align: center; font-size: 12px; color: gray; }
+        .print-btn { margin-top: 20px; padding: 10px 20px; background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+        .print-btn:hover { background-color: #45a049; }
+        .itlogo{display: flex; justify-content: center;}
+
+        /* Print Media Query */
+        @media print {
+            .invoice-container { max-width: 100%; padding: 10px; border: 2px solid black; background: none; }
+            .header h2 { font-size: 20px; }
+            .details, .payment-breakdown { margin-top: 10px; }
+            table { width: 100%; }
+            .footer { font-size: 10px; }
+            
+            body * {
+                visibility: hidden;
+            }
+
+            .invoice-container, .invoice-container * {
+                visibility: visible;
+            }
+            .print-btn { display: none; } /* Hide print button when printing */
+        }
+    </style>
+</head>
+<body>
+    <div class="invoice-container">
+        <header>
+         <div class="header">
+            <h2> Gp Bhojpur Channakya Hostel </h2>
+            <p>Kakila, Jagdishpur</p>
+        </div>   
+        </header>
+        
+
+        <div class="details">
+            <p><strong>Invoice No:</strong> INV-<%= invoice.invoiceNo %></p>
+            <p><strong>Date:</strong> <%= new Date(invoice.invoiceDate).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric"}) %></p>
+            <p><strong>Student Name:</strong> <%= invoice.student.name%></p>
+            <p><strong>Student ID:</strong> <%= invoice.student.studentId %></p>
+            <p><strong>Section :</strong> <%= invoice.student.room.section %>, <strong>Room :</strong> <b><%= invoice.student.room.roomNo %></b>, <strong>Bed No :</strong>  <b><%= invoice.student.room.bedNo %></b> </p>
+        </div>
+
+        <div class="payment-breakdown">
+            <h3>Billing Details</h3>
+            <table>
+                <tr>
+                    <th>Description</th>
+                    <th>Amount</th>
+                </tr>
+                <tr>
+                    <td>Room Rent</td>
+                    <td>₹<%= invoice.roomRent %></td>
+                </tr>
+                <tr>
+                    <td>Balance dues</td>
+                    <td>₹<%= invoice.dues %></td>
+                </tr>
+                <tr>
+                    <td>Other Charge</td>
+                    <td>₹<%= invoice.utilities %></td>
+                </tr>
+                <tr>
+                    <td>Security Deposit</td>
+                    <td>₹<%= invoice.securityDeposit %></td>
+                </tr>
+                <tr>
+                    <td><strong>Total Amount</strong></td>
+                    <td><strong>₹<%= invoice.totalAmount %></strong></td>
+                </tr>
+                <tr>
+                    <td><strong>Amount Paid</strong></td>
+                    <td><strong>₹<%= invoice.amountPaid %></strong></td>
+                </tr>
+                <tr>
+                    <td><strong>Balance Due</strong></td>
+                    <td><strong style="color:red;">₹<%= invoice.balanceDue %></strong></td>
+                </tr>
+            </table>
+        </div>
+        <button class="print-btn" onclick="window.print()">Print Invoice</button>
+        <a href="/admin/tables"><button class="print-btn">Back</button></a>
+
+        <div class="footer">
+            <p>Payment should be made by <strong><%= invoice.dueDate %></strong></p>
+            <p>For any queries, contact: 91+ 7254809630</p>
+            <div class="itlogo">
+                <p style="font-size: 20px; color: maroon; text-transform: capitalize;">This is created by </p><pre>  </pre><img src="/img/gpbhojpur.png" width="50px" alt="IT CLUB BHOJPUR">
+            </div>
+             </div>
+    </div>
+</body>
+</html>

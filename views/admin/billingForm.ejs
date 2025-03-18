@@ -1,0 +1,36 @@
+<% layout("/layouts/boilerplate.ejs") %>
+    <div class="form_box">
+        <form action="/admin/billing/<%=student._id %>" method="POST">
+
+            <label for="studentId" class="form-label">Student ID:</label>
+            <input type="text" class="form-control" value="<%= student.studentId %>" id="studentId" name="studentId"
+                required>
+
+            <label for="studentName" class="form-label">Student Name:</label>
+            <input type="text" class="form-control" value="<%= student.name %>" id="studentName" name="studentName"
+                required>
+
+            <label for="roomNumber" class="form-label">Room Number:</label>
+            <input type="text" class="form-control" value="<%= student.room.roomNo %>" id="roomNumber" name="roomNumber"
+                required>
+
+            <label for="roomNumber" class="form-label">Dues Balance:</label>
+            <input type="text" class="form-control" value="<%= student.duespayment %>" id="roomNumber" name="dues"
+                required>
+
+            <label for="roomRent" class="form-label">Room Rent (₹):</label>
+            <input type="number" class="form-control" id="roomRent" name="roomRent" required>
+
+            <label for="utilities" class="form-label">Other Charge (₹):</label>
+            <input type="number" class="form-control" id="utilities" name="utilities" required>
+
+            <label for="securityDeposit" class="form-label">Security Deposit (₹):</label>
+            <input type="number" class="form-control" id="securityDeposit" name="securityDeposit" required>
+
+            <label for="amountPaid" class="form-label">Amount Paid (₹):</label>
+            <input type="number" class="form-control" id="amountPaid" name="amountPaid" required>
+
+
+            <button type="submit" class="btn btn-success w-100">Generate Bill</button>
+        </form>
+    </div>
