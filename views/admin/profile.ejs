@@ -20,16 +20,20 @@
         <div class="col-md-8">
           <div class="row">
             <div class="col-sm-6">
-              <p><i class="fas fa-id-badge text-primary"></i> <strong>Roll No:</strong> <%= student.roll_no || 'N/A' %></p>
+              <p><i class="fas fa-id-badge text-primary"></i> <strong>Registration No:</strong> <%= student.Registration || 'N/A' %></p>
               <p><i class="fas fa-calendar-alt text-success"></i> <strong>DOB:</strong> <%= student.date_of_birth || 'Not Provided' %></p>
               <p><i class="fas fa-user text-info"></i> <strong>Gender:</strong> <%= student.gender || 'Not Provided' %></p>
               <p><i class="fas fa-phone text-warning"></i> <strong>Phone:</strong> <%= student.contact_no || 'Not Provided' %></p>
+              <p><i class="fas fa-phone text-warning"></i> <strong>Adress:</strong> <%= student.adress || 'Not Provided' %></p>
+              <p><i class="fas fa-phone text-warning"></i> <strong>Semester:</strong> <%= student.semester || 'Not Provided' %></p>
             </div>
             <div class="col-sm-6">
               <p><i class="fas fa-envelope text-danger"></i> <strong>Email:</strong> <%= student.email || 'Not Provided' %></p>
               <p><i class="fas fa-map-marker-alt text-dark"></i> <strong>Address:</strong> <%= student.district || 'Not Provided' %></p>
               <p><i class="fas fa-graduation-cap text-secondary"></i> <strong>Semester:</strong> <%= student.semester || 'Not Provided' %></p>
-              <p><i class="fas fa-user-tie text-primary"></i> <strong>Guardian Phone:</strong> <%= student.father_contact || 'Not Provided' %></p>
+              <p><i class="fas fa-user-tie text-primary"></i> <strong>Father Name:</strong> <%= student.father_name || 'Not Provided' %></p>
+              <p><i class="fas fa-user-tie text-primary"></i> <strong>Mother Name:</strong> <%= student.mother_name || 'Not Provided' %></p>
+              <p><i class="fas fa-user-tie text-primary"></i> <strong>Father's Contact:</strong> <%= student.father_contact || 'Not Provided' %></p>
             </div>
           </div>
         </div>
@@ -47,8 +51,11 @@
       <table class="table table-bordered text-center">
         <thead class="table-dark">
           <tr>
-            <th>Month</th>
+            <th>Payment of month</th>
+            <th> date of Payment</th>
+            <th>Paid Amount (₹)</th>
             <th>Dues Payment (₹)</th>
+            <th>Receipt No.</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -56,8 +63,11 @@
           <% if (invoices && invoices.length > 0) { %>
             <% for (let invoice of invoices) { %>
               <tr>
+                <td><%=invoice.payment_month ?"":"Not mention"%></td>
                 <td><%= new Date(invoice.invoiceDate).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }) %></td>
+                <td>₹ <%= invoice.amountPaid.toFixed(2) %></td>
                 <td>₹ <%= invoice.balanceDue.toFixed(2) %></td>
+                <td> <%= invoice.invoiceNo %></td>
                 <td>
                   <a class="btn btn-sm btn-info" href="/admin/invoice/<%= invoice._id %>">View</a>
                 </td>

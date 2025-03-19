@@ -11,13 +11,10 @@ const BillingInvoiceSchema = new mongoose.Schema({
     securityDeposit: { type: Number, required: true }, // One-time deposit
 
     totalAmount: { type: Number, required: true },  // Rent + Utilities + Deposit
+    payment_month:{type: Date, required:true},
     amountPaid: { type: Number, required: true },  // Amount Paid by Student
     balanceDue: { type: Number, required: true },  // Remaining Due Amount
-    student:{ type:mongoose.Schema.Types.ObjectId, ref:"Student"},
-    paymentStatus: { type: String, enum: ['Paid', 'Pending', 'Overdue'], default: 'Paid' }, // Payment Status
-
-    paymentMode: { type: String, enum: ['Cash', 'UPI', 'Bank Transfer', 'Credit Card'], default: 'Cash' }, // Payment Method
-
+    student:{ type:mongoose.Schema.Types.ObjectId, ref:"Student"}, 
     createdAt: { type: Date, default: Date.now }, // Timestamp
 });
 BillingInvoiceSchema.plugin(AutoIncrement, { inc_field: "invoiceNo" });

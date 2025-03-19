@@ -3,13 +3,13 @@
     <h2 class="text-center my-4">Hostel Student Details</h2>
 
     <!-- Navigation Links -->
-    <div class="dashboard_row1 text-center mb-3">
+    <!-- <div class="dashboard_row1 text-center mb-3">
         <ul class="list-inline">
             <li class="list-inline-item"><a href="/admin/sectionba" class="btn btn-primary">Boys A</a></li>
             <li class="list-inline-item"><a href="/admin/sectionbb" class="btn btn-primary">Boys B</a></li>
             <li class="list-inline-item"><a href="/admin/sectionga" class="btn btn-primary">Girls A</a></li>
         </ul>
-    </div>
+    </div> -->
 
     <!-- Student Table -->
     <div class="table-responsive">
@@ -19,7 +19,7 @@
                     <th>Picture</th>
                     <th>Name</th>
                     <th>Registration Number</th>
-                    <th>Phone</th>
+                    <th>Home District</th>
                     <th>Room No</th>
                     <th>Mobile</th>
                     <th>Payment Status</th>
@@ -64,7 +64,7 @@
                                 <!-- Button payment allocation to trigger modal (Each button has a unique modal ID) -->
                                 <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal"
                                     data-bs-target="#payment<%= student._id %>">
-                                    Payment
+                                    Receipt
                                 </button>
                                 <!-- Button payment allocation to trigger modal (Each button has a unique modal ID) -->
                                  <a class="btn btn-sm btn-info" href="/admin/view/<%=student._id %>">View</a>
@@ -155,8 +155,9 @@
                                 
                                             <label for="amountPaid" class="form-label">Amount Paid (₹):</label>
                                             <input type="number" class="form-control" id="amountPaid" name="amountPaid" required>
-                                
-                                
+
+                                            <label for="payment_month" class="form-label">Payment of Month:</label>
+                                            <input type="date" class="form-control" id="payment_month" name="payment_month" required>                        
                                             <button type="submit" class="btn btn-success w-100">Generate Bill</button>
                                         </form>
                                     </div>

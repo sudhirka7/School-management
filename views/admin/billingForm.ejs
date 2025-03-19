@@ -1,3 +1,5 @@
+<!-- not use -->
+
 <% layout("/layouts/boilerplate.ejs") %>
     <div class="form_box">
         <form action="/admin/billing/<%=student._id %>" method="POST">
@@ -18,7 +20,7 @@
             <input type="text" class="form-control" value="<%= student.duespayment %>" id="roomNumber" name="dues"
                 required>
 
-            <label for="roomRent" class="form-label">Room Rent (₹):</label>
+            <label for="roomRent" class="form-label">Bed Charge (₹):</label>
             <input type="number" class="form-control" id="roomRent" name="roomRent" required>
 
             <label for="utilities" class="form-label">Other Charge (₹):</label>
@@ -30,6 +32,8 @@
             <label for="amountPaid" class="form-label">Amount Paid (₹):</label>
             <input type="number" class="form-control" id="amountPaid" name="amountPaid" required>
 
+            <label for="payment_month" class="form-label">Payment of Month:</label>
+            <input type="date" class="form-control" id="payment_month" name="payment_month" required>
 
             <button type="submit" class="btn btn-success w-100">Generate Bill</button>
         </form>

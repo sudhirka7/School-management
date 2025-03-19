@@ -47,10 +47,11 @@ router.post("/login", async (req, res) => {
 router.get("/dashboard", authMiddleware, async (req, res) => {
     const email = req.session.user.email;
     const countCS = await Student.countDocuments({});
+    const students = await Student.find({});
     const rooms = await Room.countDocuments({});
     const avarooms = await Room.countDocuments({ status: "F" });
 
-    res.render("admin/dashboard.ejs", { countCS, rooms, avarooms });
+    res.render("admin/dashboard.ejs", { countCS, rooms, avarooms, students });
 })
 
 router.get("/sign-up", (req, res) => {

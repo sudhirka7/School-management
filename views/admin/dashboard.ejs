@@ -1,36 +1,600 @@
 <% layout("/layouts/boilerplate.ejs") %>
-
-<div class="row mt-3">
-    <div class="col-sm-4 mb-3 mb-sm-0">
-      <div class="card">
-        <div class="card-body text-center">
-          <h5 class="card-title">No of Students</h5>
-          <p class="card-text"><%=countCS%></p>
-          <a href="#" class="btn btn-primary">Let's see</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-4">
-      <div class="card text-center">
-        <div class="card-body">
-          <h5 class="card-title">No of rooms</h5>
-          <p class="card-text"><%=rooms %></p>
-          <a href="#" class="btn btn-primary">Let's see</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="card text-center">
-          <div class="card-body">
-            <h5 class="card-title">AVAILABLE</h5>
-            <p class="card-text"><%=avarooms%></p>
-            <a href="#" class="btn btn-primary">Let's see</a>
+  <div class="container">
+    <div class="row mt-3">
+      <div class="col-sm-4 mb-3 mb-sm-0">
+        <div class="card">
+          <div class="card-body text-center">
+            <h5 class="card-title">No of Students</h5>
+            <p class="card-text">
+              <%=countCS%>
+            </p>
+            <div class="btn btn-outline-primary"><a class="btn btn-primary" data-bs-toggle="collapse" href="#studentall" role="button" aria-expanded="true"
+              aria-controls="studentall">let's</a>
+            <a class="btn btn-primary" href="#studentall">See</a></div>
+            
+              
           </div>
         </div>
       </div>
+      <div class="col-sm-4">
+        <div class="card text-center">
+          <div class="card-body">
+            <h5 class="card-title">No of rooms</h5>
+            <p class="card-text">
+              <%=rooms %>
+            </p>
+            <div class="btn btn-outline-primary">
+              <a class="btn btn-primary" data-bs-toggle="collapse" href="#roomsall" role="button" aria-expanded="true"
+              aria-controls="roomsall">Let's</a>
+              <a class="btn btn-primary" href="#roomsall">See</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card text-center">
+          <div class="card-body">
+            <h5 class="card-title">AVAILABLE</h5>
+            <p class="card-text">
+              <%=avarooms%>
+            </p>
+            <div class="btn btn-outline-primary">
+              <a class="btn btn-primary" data-bs-toggle="collapse" href="#roomsall" role="button" aria-expanded="true"
+              aria-controls="roomsall">Let's</a>
+              <a class="btn btn-primary" href="#roomsall">See</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- for student -->
+  <div class="container mt-3">
+    <h1 class="text-center text-info">List of Student</h1>
+    <p class="d-inline-flex gap-1">
+      <a class="btn btn-primary" data-bs-toggle="collapse" href="#boya" role="button" aria-expanded="false"
+        aria-controls="boya">Boys A</a>
+
+      <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#boyb"
+        aria-expanded="false" aria-controls="boyb">Boys B</button>
+      <a class="btn btn-primary" data-bs-toggle="collapse" href="#girla" role="button" aria-expanded="false"
+        aria-controls="girla">Girls A</a>
+
+      <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse"
+        aria-expanded="false" aria-controls="boya  boyb girla">show</button>
+    </p>
+    <hr>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <!-- First Collapsible Section -->
+      <div class="col-12">
+        <div class="collapse multi-collapse show" id="boya">
+          <h1 class="text-center text-success">Boys A</h1>
+          <div class="card card-body">
+            <div class="table-responsive mt-3">
+              <table class="table table-bordered table-hover text-center">
+                <thead class="table-dark">
+                  <tr>
+                    <th>Picture</th>
+                    <th>Name</th>
+                    <th>Registration Number</th>
+                    <th>Home District</th>
+                    <th>Mobile No</th>
+                    <th>Father's Name</th>
+                    <th>Mother's Name</th>
+                    <th>Father's Contact</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if (students.length> 0) { %>
+                    <% for (let student of students) { %>
+                      <tr>
+                        <td>
+                          <img src="<%= student.image_url || '/img/default-avatar.png' %>" alt="<%= student.name %>"
+                            class="rounded-circle" height="30px">
+                        </td>
+                        <td>
+                          <%= student.name %>
+                        </td>
+                        <td>
+                          <%= student.roll_no %>
+                        </td>
+                        <td>
+                          <%= student.district %>
+                        </td>
+                        <td>
+                          <%= student.contact_no %>
+                        </td>
+                        <td>
+                          <%= student.father_name %>
+                        </td>
+                        <td>
+                          <%= student.mother_name %>
+                        </td> <!-- Fixed mother's name column -->
+                        <td>
+                          <%= student.father_contact ? student.father_contact : "NA" %>
+                        </td>
+                      </tr>
+                      <% } %>
+                        <% } else { %>
+                          <tr>
+                            <td colspan="8" class="text-center text-secondary">No students found.</td>
+                          </tr>
+                          <% } %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Second Collapsible Section -->
+      <div class="col-12">
+        <div class="collapse multi-collapse" id="boyb">
+          <h1 class="text-center text-success">Boys A</h1>
+          <div class="card card-body">
+            <div class="table-responsive mt-3">
+              <table class="table table-bordered table-hover text-center">
+                <thead class="table-dark">
+                  <tr>
+                    <th>Picture</th>
+                    <th>Name</th>
+                    <th>Registration Number</th>
+                    <th>Home District</th>
+                    <th>Mobile No</th>
+                    <th>Father's Name</th>
+                    <th>Mother's Name</th>
+                    <th>Father's Contact</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if (students.length> 0) { %>
+                    <% for (let student of students) { %>
+                      <tr>
+                        <td>
+                          <img src="<%= student.image_url || '/img/default-avatar.png' %>" alt="<%= student.name %>"
+                            class="rounded-circle" height="30px">
+                        </td>
+                        <td>
+                          <%= student.name %>
+                        </td>
+                        <td>
+                          <%= student.roll_no %>
+                        </td>
+                        <td>
+                          <%= student.district %>
+                        </td>
+                        <td>
+                          <%= student.contact_no %>
+                        </td>
+                        <td>
+                          <%= student.father_name %>
+                        </td>
+                        <td>
+                          <%= student.mother_name %>
+                        </td> <!-- Fixed mother's name column -->
+                        <td>
+                          <%= student.father_contact ? student.father_contact : "NA" %>
+                        </td>
+                      </tr>
+                      <% } %>
+                        <% } else { %>
+                          <tr>
+                            <td colspan="8" class="text-center text-secondary">No students found.</td>
+                          </tr>
+                          <% } %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- third collapsible section -->
+      <div class="col-12">
+        <div class="collapse multi-collapse" id="girla">
+          <h1 class="text-center text-success">Girls A</h1>
+          <div class="card card-body">
+            <div class="table-responsive mt-3">
+              <table class="table table-bordered table-hover text-center">
+                <thead class="table-dark">
+                  <tr>
+                    <th>Picture</th>
+                    <th>Name</th>
+                    <th>Registration Number</th>
+                    <th>Home District</th>
+                    <th>Mobile No</th>
+                    <th>Father's Name</th>
+                    <th>Mother's Name</th>
+                    <th>Father's Contact</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if (students.length> 0) { %>
+                    <% for (let student of students) { %>
+                      <tr>
+                        <td>
+                          <img src="<%= student.image_url || '/img/default-avatar.png' %>" alt="<%= student.name %>"
+                            class="rounded-circle" height="30px">
+                        </td>
+                        <td>
+                          <%= student.name %>
+                        </td>
+                        <td>
+                          <%= student.roll_no %>
+                        </td>
+                        <td>
+                          <%= student.district %>
+                        </td>
+                        <td>
+                          <%= student.contact_no %>
+                        </td>
+                        <td>
+                          <%= student.father_name %>
+                        </td>
+                        <td>
+                          <%= student.mother_name %>
+                        </td> <!-- Fixed mother's name column -->
+                        <td>
+                          <%= student.father_contact ? student.father_contact : "NA" %>
+                        </td>
+                      </tr>
+                      <% } %>
+                        <% } else { %>
+                          <tr>
+                            <td colspan="8" class="text-center text-secondary">No students found.</td>
+                          </tr>
+                          <% } %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
+  <!-- for Rooms -->
+  <div class="container mt-3">
+    <h1 class="text-center text-info">List of Rooms</h1>
+    <p class="d-inline-flex gap-1">
+      <a class="btn btn-primary" data-bs-toggle="collapse" href="#boyarooms" role="button" aria-expanded="true"
+        aria-controls="boyarooms">Boys A</a>
 
-   
+      <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#boybrooms"
+        aria-expanded="false" aria-controls="boybrooms">Boys B</button>
+      <a class="btn btn-primary" data-bs-toggle="collapse" href="#girlarooms" role="button" aria-expanded="false"
+        aria-controls="girlarooms">Girls A</a>
 
- 
+      <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse"
+        aria-expanded="false" aria-controls="boyarooms  boybrooms girlarooms">show All</button>
+    </p>
+    <hr>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row">
+      <!-- First Collapsible Section -->
+      <div class="col-12">
+        <div class="collapse multi-collapse show" id="boyarooms">
+          <h1 class="text-center text-success">Boys A</h1>
+          <div class="card card-body">
+            <div class="table-responsive mt-3">
+              <table class="table table-bordered table-hover text-center">
+                <thead class="table-dark">
+                  <tr>
+                    <th>Picture</th>
+                    <th>Name</th>
+                    <th>Registration Number</th>
+                    <th>Home District</th>
+                    <th>Mobile No</th>
+                    <th>Father's Name</th>
+                    <th>Mother's Name</th>
+                    <th>Father's Contact</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if (students.length> 0) { %>
+                    <% for (let student of students) { %>
+                      <tr>
+                        <td>
+                          <img src="<%= student.image_url || '/img/default-avatar.png' %>" alt="<%= student.name %>"
+                            class="rounded-circle" height="30px">
+                        </td>
+                        <td>
+                          <%= student.name %>
+                        </td>
+                        <td>
+                          <%= student.roll_no %>
+                        </td>
+                        <td>
+                          <%= student.district %>
+                        </td>
+                        <td>
+                          <%= student.contact_no %>
+                        </td>
+                        <td>
+                          <%= student.father_name %>
+                        </td>
+                        <td>
+                          <%= student.mother_name %>
+                        </td> <!-- Fixed mother's name column -->
+                        <td>
+                          <%= student.father_contact ? student.father_contact : "NA" %>
+                        </td>
+                      </tr>
+                      <% } %>
+                        <% } else { %>
+                          <tr>
+                            <td colspan="8" class="text-center text-secondary">No students found.</td>
+                          </tr>
+                          <% } %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="collapse multi-collapse" id="boybrooms">
+          <h1 class="text-center text-success">Boys B</h1>
+          <div class="card card-body">
+            <div class="table-responsive mt-3">
+              <table class="table table-bordered table-hover text-center">
+                <thead class="table-dark">
+                  <tr>
+                    <th>Picture</th>
+                    <th>Name</th>
+                    <th>Registration Number</th>
+                    <th>Home District</th>
+                    <th>Mobile No</th>
+                    <th>Father's Name</th>
+                    <th>Mother's Name</th>
+                    <th>Father's Contact</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if (students.length> 0) { %>
+                    <% for (let student of students) { %>
+                      <tr>
+                        <td>
+                          <img src="<%= student.image_url || '/img/default-avatar.png' %>" alt="<%= student.name %>"
+                            class="rounded-circle" height="30px">
+                        </td>
+                        <td>
+                          <%= student.name %>
+                        </td>
+                        <td>
+                          <%= student.roll_no %>
+                        </td>
+                        <td>
+                          <%= student.district %>
+                        </td>
+                        <td>
+                          <%= student.contact_no %>
+                        </td>
+                        <td>
+                          <%= student.father_name %>
+                        </td>
+                        <td>
+                          <%= student.mother_name %>
+                        </td> <!-- Fixed mother's name column -->
+                        <td>
+                          <%= student.father_contact ? student.father_contact : "NA" %>
+                        </td>
+                      </tr>
+                      <% } %>
+                        <% } else { %>
+                          <tr>
+                            <td colspan="8" class="text-center text-secondary">No students found.</td>
+                          </tr>
+                          <% } %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="collapse multi-collapse" id="girlarooms">
+          <h1 class="text-center text-success">Girls A</h1>
+          <div class="card card-body">
+            <div class="table-responsive mt-3">
+              <table class="table table-bordered table-hover text-center">
+                <thead class="table-dark">
+                  <tr>
+                    <th>Picture</th>
+                    <th>Name</th>
+                    <th>Registration Number</th>
+                    <th>Home District</th>
+                    <th>Mobile No</th>
+                    <th>Father's Name</th>
+                    <th>Mother's Name</th>
+                    <th>Father's Contact</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if (students.length> 0) { %>
+                    <% for (let student of students) { %>
+                      <tr>
+                        <td>
+                          <img src="<%= student.image_url || '/img/default-avatar.png' %>" alt="<%= student.name %>"
+                            class="rounded-circle" height="30px">
+                        </td>
+                        <td>
+                          <%= student.name %>
+                        </td>
+                        <td>
+                          <%= student.roll_no %>
+                        </td>
+                        <td>
+                          <%= student.district %>
+                        </td>
+                        <td>
+                          <%= student.contact_no %>
+                        </td>
+                        <td>
+                          <%= student.father_name %>
+                        </td>
+                        <td>
+                          <%= student.mother_name %>
+                        </td> <!-- Fixed mother's name column -->
+                        <td>
+                          <%= student.father_contact ? student.father_contact : "NA" %>
+                        </td>
+                      </tr>
+                      <% } %>
+                        <% } else { %>
+                          <tr>
+                            <td colspan="8" class="text-center text-secondary">No students found.</td>
+                          </tr>
+                          <% } %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- all students -->
+  <div class="container-fluid">
+    <div class="row">
+      <!-- First Collapsible Section -->
+      <div class="col-12">
+        <div class="collapse multi-collapse" id="studentall">
+          <h1 class="text-center text-success">All Student</h1>
+          <div class="card card-body">
+            <div class="table-responsive mt-3">
+              <table class="table table-bordered table-hover text-center">
+                <thead class="table-dark">
+                  <tr>
+                    <th>Picture</th>
+                    <th>Name</th>
+                    <th>Registration Number</th>
+                    <th>Home District</th>
+                    <th>Mobile No</th>
+                    <th>Father's Name</th>
+                    <th>Mother's Name</th>
+                    <th>Father's Contact</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if (students.length> 0) { %>
+                    <% for (let student of students) { %>
+                      <tr>
+                        <td>
+                          <img src="<%= student.image_url || '/img/default-avatar.png' %>" alt="<%= student.name %>"
+                            class="rounded-circle" height="30px">
+                        </td>
+                        <td>
+                          <%= student.name %>
+                        </td>
+                        <td>
+                          <%= student.roll_no %>
+                        </td>
+                        <td>
+                          <%= student.district %>
+                        </td>
+                        <td>
+                          <%= student.contact_no %>
+                        </td>
+                        <td>
+                          <%= student.father_name %>
+                        </td>
+                        <td>
+                          <%= student.mother_name %>
+                        </td> <!-- Fixed mother's name column -->
+                        <td>
+                          <%= student.father_contact ? student.father_contact : "NA" %>
+                        </td>
+                      </tr>
+                      <% } %>
+                        <% } else { %>
+                          <tr>
+                            <td colspan="8" class="text-center text-secondary">No students found.</td>
+                          </tr>
+                          <% } %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- all rooms -->
+
+  <div class="container-fluid">
+    <div class="row">
+      <!-- First Collapsible Section -->
+      <div class="col-12">
+        <div class="collapse multi-collapse" id="roomsall">
+          <h1 class="text-center text-success">All Rooms</h1>
+          <div class="card card-body">
+            <div class="table-responsive mt-3">
+              <table class="table table-bordered table-hover text-center">
+                <thead class="table-dark">
+                  <tr>
+                    <th>Picture</th>
+                    <th>Name</th>
+                    <th>Registration Number</th>
+                    <th>Home District</th>
+                    <th>Mobile No</th>
+                    <th>Father's Name</th>
+                    <th>Mother's Name</th>
+                    <th>Father's Contact</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if (students.length> 0) { %>
+                    <% for (let student of students) { %>
+                      <tr>
+                        <td>
+                          <img src="<%= student.image_url || '/img/default-avatar.png' %>" alt="<%= student.name %>"
+                            class="rounded-circle" height="30px">
+                        </td>
+                        <td>
+                          <%= student.name %>
+                        </td>
+                        <td>
+                          <%= student.roll_no %>
+                        </td>
+                        <td>
+                          <%= student.district %>
+                        </td>
+                        <td>
+                          <%= student.contact_no %>
+                        </td>
+                        <td>
+                          <%= student.father_name %>
+                        </td>
+                        <td>
+                          <%= student.mother_name %>
+                        </td> <!-- Fixed mother's name column -->
+                        <td>
+                          <%= student.father_contact ? student.father_contact : "NA" %>
+                        </td>
+                      </tr>
+                      <% } %>
+                        <% } else { %>
+                          <tr>
+                            <td colspan="8" class="text-center text-secondary">No students found.</td>
+                          </tr>
+                          <% } %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>

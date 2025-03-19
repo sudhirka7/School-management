@@ -48,7 +48,8 @@
 
         <div class="details">
             <p><strong>Invoice No:</strong> INV-<%= invoice.invoiceNo %></p>
-            <p><strong>Date:</strong> <%= new Date(invoice.invoiceDate).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric"}) %></p>
+            <p><strong>Payment of Month:</strong> <%= new Date(invoice.payment_month).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric"}) %></p>
+            <p><strong>Date of payment:</strong> <%= new Date(invoice.invoiceDate).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric"}) %></p>
             <p><strong>Student Name:</strong> <%= invoice.student.name%></p>
             <p><strong>Student ID:</strong> <%= invoice.student.studentId %></p>
             <p><strong>Section :</strong> <%= invoice.student.room.section %>, <strong>Room :</strong> <b><%= invoice.student.room.roomNo %></b>, <strong>Bed No :</strong>  <b><%= invoice.student.room.bedNo %></b> </p>
