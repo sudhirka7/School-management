@@ -2,177 +2,206 @@
 
     <h2 class="text-center my-4">Hostel Student Details</h2>
 
-    <!-- Navigation Links -->
-    <!-- <div class="dashboard_row1 text-center mb-3">
-        <ul class="list-inline">
-            <li class="list-inline-item"><a href="/admin/sectionba" class="btn btn-primary">Boys A</a></li>
-            <li class="list-inline-item"><a href="/admin/sectionbb" class="btn btn-primary">Boys B</a></li>
-            <li class="list-inline-item"><a href="/admin/sectionga" class="btn btn-primary">Girls A</a></li>
-        </ul>
-    </div> -->
+
 
     <!-- Student Table -->
-    <div class="table-responsive">
-        <table class="table table-bordered table-hover text-center">
-            <thead class="table-dark">
-                <tr>
-                    <th>Picture</th>
-                    <th>Name</th>
-                    <th>Registration Number</th>
-                    <th>Home District</th>
-                    <th>Room No</th>
-                    <th>Mobile</th>
-                    <th>Payment Status</th>
-                    <th>Actions</th> <!-- Fixed duplicate column -->
-                </tr>
-            </thead>
-            <tbody>
-                <% if (students.length> 0) { %>
-                    <% for (let student of students) { %>
-                        <tr>
-                            <td>
-                                <img src="<%= student.image_url || '/img/default-avatar.png' %>"
-                                    alt="<%= student.name %>" class="rounded-circle" width="50px">
-                            </td>
-                            <td>
-                                <%= student.name %>
-                            </td>
-                            <td>
-                                <%= student.roll_no %>
-                            </td>
-                            <td>
-                                <%= student.district %>
-                            </td>
-                            <td>
-                                <% if (student.room) { %>
-                                    <%= student.room.roomNo %>
-                                        <% } else { %> Not Assigned <% } %>
-                            </td>
-                            <td>
-                                <%= student.contact_no %>
-                            </td>
-                            <td>
-                                <%= student.duespayment %>
-                            </td>
-                            <td>
-                                <!-- Button room allocation to trigger modal (Each button has a unique modal ID) -->
-                                <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal"
-                                    data-bs-target="#roomAssignModal-<%= student._id %>">
-                                    Room Allocation
-                                </button>
-                                <!-- Button room allocation to trigger modal (Each button has a unique modal ID) -->
-                                <!-- Button payment allocation to trigger modal (Each button has a unique modal ID) -->
-                                <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal"
-                                    data-bs-target="#payment<%= student._id %>">
-                                    Receipt
-                                </button>
-                                <!-- Button payment allocation to trigger modal (Each button has a unique modal ID) -->
-                                 <a class="btn btn-sm btn-info" href="/admin/view/<%=student._id %>">View</a>
-                                 <a class="btn btn-sm btn-danger" href="/admin/delete/<%=student._id %>">Delete</a>
+    <div class="container-fluid">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover text-center">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Picture</th>
+                        <th>Name</th>
+                        <th>Registration Number</th>
+                        <th>Roll No.</th>
+                        <th>Home District</th>
+                        <th>Room No</th>
+                        <th>Mobile</th>
+                        <th>Payment Status</th>
+                        <th>Actions</th> <!-- Fixed duplicate column -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (students.length> 0) { %>
+                        <% for (let student of students) { %>
+                            <tr>
+                                <td>
+                                    <img src="<%= student.image_url || '/img/default_avtar.png' %>"
+                                        alt="<%= student.image_url %>" class="rounded-circle" width="50px">
                                 </td>
-                        </tr>
+                                <td>
+                                    <%= student.name %>
+                                </td>
+                                <td>
+                                    <%= student.studentId %>
+                                </td>
+                                <td>
+                                    <%= student.roll_no %>
+                                </td>
+                                <td>
+                                    <%= student.district %>
+                                </td>
+                                <td>
+                                    <% if (student.room) { %>
+                                        <%= student.room.roomNo %>
+                                            <% } else { %> Not Assigned <% } %>
+                                </td>
+                                <td>
+                                    <%= student.contact_no %>
+                                </td>
+                                <td>
+                                    <%= student.duespayment %>
+                                </td>
+                                <td class="dropdown">
 
-                        <!-- Modal for Room Allocation (Each modal has a unique ID) -->
-                        <div class="modal fade" id="roomAssignModal-<%= student._id %>" tabindex="-1"
-                            aria-labelledby="roomAssignModalLabel-<%= student._id %>" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="roomAssignModalLabel-<%= student._id %>">
-                                            Assign Room to <%= student.name %>
-                                        </h5>
+                                    <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        ...
+                                    </a>
 
+                                    <ul class="dropdown-menu">
+
+                                        <li class="m-3"><!-- Button room allocation to trigger modal (Each button has a unique modal ID) -->
+                                            <button type="button" class="btn btn-sm btn-success w-100" data-bs-toggle="modal"
+                                                data-bs-target="#roomAssignModal-<%= student._id %>">
+                                                Room Allocation
+                                            </button>
+                                            <!-- Button room allocation to trigger modal (Each button has a unique modal ID) -->
+                                        </li>
+                                        <li class="m-3"> <!-- Button payment allocation to trigger modal (Each button has a unique modal ID) -->
+                                            <button type="button" class="btn btn-sm btn-warning w-100" data-bs-toggle="modal"
+                                                data-bs-target="#payment<%= student._id %>">
+                                                Receipt
+                                            </button>
+                                            <!-- Button payment allocation to trigger modal (Each button has a unique modal ID) -->
+                                        </li>
+                                        <li class="m-3">
+                                            <a class="btn btn-sm btn-info w-100" href="/admin/view/<%=student._id %>">View</a>
+                                        </li>
+                                        <li class="m-3">
+                                            <a class="btn btn-sm btn-danger w-100"
+                                                href="/admin/delete/<%=student._id %>">Delete</a>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+
+                            <!-- Modal for Room Allocation (Each modal has a unique ID) -->
+                            <div class="modal fade" id="roomAssignModal-<%= student._id %>" tabindex="-1"
+                                aria-labelledby="roomAssignModalLabel-<%= student._id %>" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="roomAssignModalLabel-<%= student._id %>">
+                                                Assign Room to <%= student.name %>
+                                            </h5>
+
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="/admin/allocation/<%= student._id %>" method="POST">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Student ID:</label>
+                                                    <input type="text" class="form-control"
+                                                        value="<%= student.studentId %>" readonly>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Student Name:</label>
+                                                    <input type="text" class="form-control" value="<%= student.name %>"
+                                                        readonly>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Room Number:</label>
+                                                    <select name="roomId" class="form-control" required>
+                                                        <% if(student.room) {%>
+                                                        <option value="<%=student.room.roomNo %>" disabled selected><%= student.room.roomNo %></option>
+                                                        <% }else{%>
+                                                            <option value="" disabled selected>Select Room</option>
+                                                        <%} %>
+                                                        <% rooms.forEach(room=> { %>
+                                                            <option value="<%= room._id %>">
+                                                                Section: <%= room.section %> | Room: <%= room.roomNo %>
+                                                                        |
+                                                                        Bed: <%= room.bedNo %>
+                                                            </option>
+                                                            <% }); %>
+                                                    </select>
+                                                </div>
+                                                <button type="submit" class="btn btn-success w-100">Assign Room</button>
+                                            </form>
+                                        </div>
                                     </div>
-                                    <div class="modal-body">
-                                        <form action="/admin/allocation/<%= student._id %>" method="POST">
-                                            <div class="mb-3">
-                                                <label class="form-label">Student ID:</label>
+                                </div>
+                            </div>
+                            <!-- Modal for Room Allocation (Each modal has a unique ID) -->
+                            <!-- Modal for payments start -->
+                            <div class="modal fade" id="payment<%= student._id %>" tabindex="-1"
+                                aria-labelledby="paymentAssignModalLabel-<%= student._id %>" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="payment<%= student._id %>">
+                                                Payment form for <%= student.name %>
+                                            </h5>
+
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="/admin/billing/<%=student._id %>" method="POST">
+
+                                                <label for="studentId" class="form-label">Student ID:</label>
                                                 <input type="text" class="form-control" value="<%= student.studentId %>"
-                                                    readonly>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Student Name:</label>
+                                                    id="studentId" name="studentId" required>
+
+                                                <label for="studentName" class="form-label">Student Name:</label>
                                                 <input type="text" class="form-control" value="<%= student.name %>"
-                                                    readonly>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Room Number:</label>
-                                                <select name="roomId" class="form-control" required>
-                                                    <option value="" disabled selected>Select a room</option>
-                                                    <% rooms.forEach(room=> { %>
-                                                        <option value="<%= room._id %>">
-                                                            Section: <%= room.section %> | Room: <%= room.roomNo %> |
-                                                                    Bed: <%= room.bedNo %>
-                                                        </option>
-                                                        <% }); %>
-                                                </select>
-                                            </div>
-                                            <button type="submit" class="btn btn-success w-100">Assign Room</button>
-                                        </form>
+                                                    id="studentName" name="studentName" required>
+
+                                                <label for="roomNumber" class="form-label">Room Number:</label>
+                                                <input type="text" class="form-control"
+                                                    value="<%= student.room ? student.room.roomNo: "" %>"
+                                                    id="roomNumber" name="roomNumber" required>
+
+                                                <label for="roomNumber" class="form-label">Dues Balance:</label>
+                                                <input type="text" class="form-control"
+                                                    value="<%= student.duespayment %>" id="roomNumber" name="dues"
+                                                    required>
+
+                                                <label for="roomRent" class="form-label">Room Rent (₹):</label>
+                                                <input type="number" class="form-control" id="roomRent" name="roomRent"
+                                                    required>
+
+                                                <label for="utilities" class="form-label">Other Charge (₹):</label>
+                                                <input type="number" class="form-control" id="utilities"
+                                                    name="utilities" required>
+
+                                                <label for="securityDeposit" class="form-label">Security Deposit
+                                                    (₹):</label>
+                                                <input type="number" class="form-control" id="securityDeposit"
+                                                    name="securityDeposit" required>
+
+                                                <label for="amountPaid" class="form-label">Amount Paid (₹):</label>
+                                                <input type="number" class="form-control" id="amountPaid"
+                                                    name="amountPaid" required>
+
+                                                <label for="payment_month" class="form-label">Payment of Month:</label>
+                                                <input type="date" class="form-control" id="payment_month"
+                                                    name="payment_month" required>
+                                                <button type="submit" class="btn btn-success w-100">Generate
+                                                    Bill</button>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- Modal for Room Allocation (Each modal has a unique ID) -->
-                        <!-- Modal for payments start -->
-                        <div class="modal fade" id="payment<%= student._id %>" tabindex="-1"
-                            aria-labelledby="paymentAssignModalLabel-<%= student._id %>" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="payment<%= student._id %>">
-                                            Assign Room to <%= student.name %>
-                                        </h5>
+                            <!-- Modal for payments end -->
 
-                                    </div>
-                                    <div class="modal-body">
-                                        <form action="/admin/billing/<%=student._id %>" method="POST">
+                            <% } %>
+                                <% } else { %>
+                                    <tr>
+                                        <td colspan="8" class="text-center text-secondary">No students found.</td>
+                                    </tr>
+                                    <% } %>
 
-                                            <label for="studentId" class="form-label">Student ID:</label>
-                                            <input type="text" class="form-control" value="<%= student.studentId %>" id="studentId" name="studentId"
-                                                required>
-                                
-                                            <label for="studentName" class="form-label">Student Name:</label>
-                                            <input type="text" class="form-control" value="<%= student.name %>" id="studentName" name="studentName"
-                                                required>
-                                
-                                            <label for="roomNumber" class="form-label">Room Number:</label>
-                                            <input type="text" class="form-control" value="<%= student.room ? student.room.roomNo: "" %>" id="roomNumber" name="roomNumber"
-                                                required>
-                                
-                                            <label for="roomNumber" class="form-label">Dues Balance:</label>
-                                            <input type="text" class="form-control" value="<%= student.duespayment %>" id="roomNumber" name="dues"
-                                                required>
-                                
-                                            <label for="roomRent" class="form-label">Room Rent (₹):</label>
-                                            <input type="number" class="form-control" id="roomRent" name="roomRent" required>
-                                
-                                            <label for="utilities" class="form-label">Other Charge (₹):</label>
-                                            <input type="number" class="form-control" id="utilities" name="utilities" required>
-                                
-                                            <label for="securityDeposit" class="form-label">Security Deposit (₹):</label>
-                                            <input type="number" class="form-control" id="securityDeposit" name="securityDeposit" required>
-                                
-                                            <label for="amountPaid" class="form-label">Amount Paid (₹):</label>
-                                            <input type="number" class="form-control" id="amountPaid" name="amountPaid" required>
-
-                                            <label for="payment_month" class="form-label">Payment of Month:</label>
-                                            <input type="date" class="form-control" id="payment_month" name="payment_month" required>                        
-                                            <button type="submit" class="btn btn-success w-100">Generate Bill</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Modal for payments end -->
-                         
-                        <% } %>
-                            <% } else { %>
-                                <tr>
-                                    <td colspan="8" class="text-center text-secondary">No students found.</td>
-                                </tr>
-                                <% } %>
-
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
     </div>

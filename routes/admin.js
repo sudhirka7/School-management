@@ -47,11 +47,13 @@ router.post("/login", async (req, res) => {
 router.get("/dashboard", authMiddleware, async (req, res) => {
     const email = req.session.user.email;
     const countCS = await Student.countDocuments({});
-    const students = await Student.find({});
-    const rooms = await Room.countDocuments({});
-    const avarooms = await Room.countDocuments({ status: "F" });
+    const students = await Student.find({}).populate("room");
+    const roomsno = await Room.countDocuments({});
+    const rooms = await Room.find({});
+    const avaroomsno = await Room.countDocuments({ status: "F" });
+    const avarooms = await Room.find({ status: "F" });
 
-    res.render("admin/dashboard.ejs", { countCS, rooms, avarooms, students });
+    res.render("admin/dashboard.ejs", { countCS,rooms, avarooms, roomsno, avaroomsno, students });
 })
 
 router.get("/sign-up", (req, res) => {
@@ -98,6 +100,7 @@ router.get("/allocation/:id", authMiddleware, async (req, res) => {
     res.render("admin/allocationForm.ejs", { student, rooms });
 });
 router.post("/allocation/:id", authMiddleware, async (req, res) => {
+    console.log(req.body);
     try {
         const student = await Student.findById(req.params.id);
 
