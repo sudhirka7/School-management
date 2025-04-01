@@ -1,20 +1,25 @@
-const mongoose =require("mongoose");
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const signSchema = new Schema({
+const userSchema = new Schema({
     name: {
         type: String,
         required: true,
     },
-    email:{
+    email: {
         type: String,
         required: true,
-        unique:true,
+        unique: true, // Ensures no duplicate emails
+    },
+    userType:{
+        type:String,
+        default: "userStudent",
     },
     password: {
-        type : String,
-        requied: true,
-    }
-})
+        type: String,
+        required: true,
+    },
+});
 
-module.exports = mongoose.model("Admin", signSchema);
+// Corrected model export
+module.exports = mongoose.model("Admin", userSchema);

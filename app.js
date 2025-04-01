@@ -11,10 +11,12 @@ require("dotenv").config();
 db();
 
 
+
+
 // middleware
 const authMiddleware = (req, res, next) => {
     if (!req.session.user) {
-        return res.redirect("/admin/login");
+        return res.redirect("/");
     }
     next();
 };
@@ -48,6 +50,18 @@ app.set("view engine", "ejs");
 app.get("/", (req, res)=>{
     res.render("primary/index");
 });
+
+app.get("/classes", (req, res)=>{
+    res.render("primary/classes");
+});
+
+app.get("/about", (req, res)=>{
+    res.render("primary/about");
+});
+app.get("/enrollstudent", (req, res)=>{
+    res.render("primary/studentform.ejs");
+});
+
 
 
 const PORT = process.env.PORT || 3000;

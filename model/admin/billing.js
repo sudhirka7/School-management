@@ -1,23 +1,50 @@
-const mongoose = require('mongoose');
-const student = require('./student');
+const mongoose = require("mongoose");
 const AutoIncrement = require("mongoose-sequence")(mongoose);
-
-const BillingInvoiceSchema = new mongoose.Schema({
-    invoiceNo: { type: Number, unique: true },  // Auto-incremented Invoice Number
-    invoiceDate: { type: Date, default: Date.now }, // Date of Invoice Generation
-    dues:{type: Number, required: true, default:0},
-    roomRent: { type: Number, required: true },  // Room Rent
-    utilities: { type: Number, required: true }, // Electricity, Water Charges
-    securityDeposit: { type: Number, required: true }, // One-time deposit
-
-    totalAmount: { type: Number, required: true },  // Rent + Utilities + Deposit
-    payment_month:{type: Date, required:true},
-    amountPaid: { type: Number, required: true },  // Amount Paid by Student
-    balanceDue: { type: Number, required: true },  // Remaining Due Amount
-    student:{ type:mongoose.Schema.Types.ObjectId, ref:"Student"}, 
-    createdAt: { type: Date, default: Date.now }, // Timestamp
-});
-BillingInvoiceSchema.plugin(AutoIncrement, { inc_field: "invoiceNo" });
- 
-  
-module.exports = mongoose.model('BillingInvoice', BillingInvoiceSchema);
+const billingSchema = new mongoose.Schema(
+  {
+    studentId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Student", // References the Student model
+      required: true,
+    },
+     
+    balanceDue:{
+        type:Number,
+        required:true,
+    },
+    admission:{
+        type:Number,
+        required:true,
+    },
+    tuition:{
+        type:Number,
+        required:true,
+    },
+    other: {
+      type: Number,
+      required: true,
+    },
+    securityDeposit: {
+        type: Number,
+        required: true,
+    },
+    amountPaid: {
+        type: Number,
+        required: true,
+    },
+    totalAmount: {
+      type: Number,
+      required: true,
+  },
+   
+    payment_month: {
+      type: String,
+      required:true,
+    },
+    invoice: { type: Number, unique: true },
+     
+  },
+  { timestamps: true }
+);
+billingSchema.plugin(AutoIncrement, { inc_field: "invoice" });
+module.exports = mongoose.model("Billing", billingSchema);

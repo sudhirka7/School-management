@@ -1,0 +1,87 @@
+<% layout('layouts/boilerplate.ejs') %>
+
+<div class="mt-8 bg-white shadow-lg rounded-lg p-6 w-full lg:w-1/2 mx-auto"> 
+    <h2 class="text-2xl font-semibold text-gray-800 text-center">Student Registration</h2>
+    <form action="/student/register" method="post" class="max-w-sm mx-auto">
+        
+        <!-- Student Name -->
+        <label class="block text-gray-700 font-medium">Student Name:</label>
+        <input type="text" value="<%= student.studentName %>" name="studentName" required class="w-full border border-gray-300 rounded-lg p-2 mt-1">
+
+        <!-- Parent's Name -->
+        <label class="block text-gray-700 font-medium">Parent's Name:</label>
+        <input type="text" value="<%= student.parentName %>" name="parentName" required class="w-full border border-gray-300 rounded-lg p-2 mt-1">
+
+        <!-- Relation -->
+        <label class="block text-gray-700 font-medium">Relation:</label>
+        <input type="text" value="<%= student.relation %>" name="relation" required class="w-full border border-gray-300 rounded-lg p-2 mt-1">
+
+        <!-- Date of Birth -->
+        <label class="block text-gray-700 font-medium">Student D.O.B:</label>
+        <input type="date" value="<%= student.dob %>" name="dob" required class="w-full border border-gray-300 rounded-lg p-2 mt-1">
+
+        <!-- Age (Auto-filled) -->
+        <label class="block text-gray-700 font-medium">Age:</label>
+        <input type="number" value="<%= student.age %>" name="age" readonly class="w-full border border-gray-300 rounded-lg p-2 mt-1 bg-gray-100">
+
+        <!-- Gender -->
+        <label class="block text-gray-700 font-medium">Gender:</label>
+        <select name="gender" required class="w-full border border-gray-300 rounded-lg p-2 mt-1">
+            <option value="<%= student.gender %>" selected><%= student.gender %></option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select>
+
+        <!-- Address -->
+        <label class="block text-gray-700 font-medium">Address:</label>
+        <input type="text" value="<%= student.address %>" name="address" required class="w-full border border-gray-300 rounded-lg p-2 mt-1">
+
+        <!-- Email -->
+        <label class="block text-gray-700 font-medium mt-4">Email:</label>
+        <input type="email" value="<%= student.email %>" name="email" required class="w-full border border-gray-300 rounded-lg p-2 mt-1">
+        
+        <!-- Calling Number -->
+        <label class="block text-gray-700 font-medium">Calling Number:</label>
+        <input type="number" value="<%= student.callingNumber %>" name="callingNumber" pattern="[0-9]{10}" required class="w-full border border-gray-300 rounded-lg p-2 mt-1">
+
+        <!-- WhatsApp Number -->
+        <label class="block text-gray-700 font-medium mt-4">WhatsApp Number:</label>
+        <input type="tel" value="<%= student.whatAppNumber %>" name="whatAppNumber" pattern="[0-9]{10}" required class="w-full border border-gray-300 rounded-lg p-2 mt-1">
+
+        <!-- Date of Joining -->
+        <label class="block text-gray-700 font-medium">Date of Joining:</label>
+        <input type="date" value="<%= student.joinDate %>" name="joinDate" required class="w-full border border-gray-300 rounded-lg p-2 mt-1">
+
+        <!-- Category -->
+        <label class="block text-gray-700 font-medium mt-4">Category:</label>
+        <select name="category" required class="w-full border border-gray-300 rounded-lg p-2 mt-1">
+            <option value="<%= student.category %>" selected><%= student.category %></option>
+            <option value="dance">Dance</option>
+            <option value="zumba">Zumba</option>
+            <option value="painting">Painting</option>
+            <option value="guitar">Guitar</option>
+            <option value="harmonium">Harmonium</option>
+            <option value="singing">Singing</option>
+            <option value="martial_art">Martial Art</option>
+            <option value="boxing">Boxing</option>
+            <option value="gymnastics">Gymnastics</option>
+        </select>
+
+        <!-- Submit Button -->
+        <button type="submit" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg w-full">Register</button>
+    </form>
+</div>
+
+<script>
+    document.querySelector("input[name='dob']").addEventListener("change", function() {
+        const dob = new Date(this.value);
+        const today = new Date();
+        let age = today.getFullYear() - dob.getFullYear();
+        const monthDiff = today.getMonth() - dob.getMonth();
+        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+            age--;
+        }
+        document.querySelector("input[name='age']").value = age;
+    });
+</script>

@@ -1,123 +1,236 @@
-<!DOCTYPE html>
-<html lang="en">
+<% layout('layouts/boilerplate.ejs') %>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hostel Landing Page</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .hero {
-            background: url('/img/hostel_home.webp') no-repeat center center/cover;
-            height: 100vh;
-            color: white;
-            display: flex;
-            align-items: center;
-            text-align: center;
-        }
 
-        .hero h1 {
-            font-size: 3rem;
-        }
-    </style>
-</head>
-
-<body>
-    <header class="hero">
-        <div class="container">
-            <h1>Welcome to Gp Bhojpur Hostel</h1>
-
-            <!-- sign in start -->
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signinModal">Login</button>
-            <!-- sign in end -->
-
-            <!-- Modal -->
-            <!-- sign-up in start -->
-            <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Sign Up</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form action="/admin/sign-up" method="POST" role="form text-left">
-                                <div class="mb-3">
-                                    <input type="text" class="form-control" name="name" placeholder="Name"
-                                        aria-label="Name" aria-describedby="email-addon">
-                                </div>
-                                <div class="mb-3">
-                                    <input type="email" class="form-control" name="email" placeholder="Email"
-                                        aria-label="Email" aria-describedby="email-addon">
-                                </div>
-                                <div class="mb-3">
-                                    <input type="password" class="form-control" name="password" placeholder="Password"
-                                        aria-label="Password" aria-describedby="password-addon">
-                                </div>
-
-                                <button type="button" class="btn btn-primary">Sign up</button>
-
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <p class="text-dark">Already have an account?  
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signinModal">Login</button>
-                            </p>
-                        </div>
-                    </div>
-                </div>
+    <div id="default-carousel" class="relative w-full" data-carousel="slide">
+        <!-- Carousel wrapper -->
+        <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
+            <!-- Item 1 -->
+            <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                <img src="/sb/bg1.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                    alt="...">
             </div>
-            <!-- sign up end -->
-            <!-- sign-up in start -->
-            <div class="modal fade" id="signinModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Sign in</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            
-                                <form action="/admin/login" method="POST" role="form">
-                                    <label>Email</label>
-                                    <div class="mb-3">
-                                        <input type="email" class="form-control" name="email" placeholder="Email"
-                                            aria-label="Email" aria-describedby="email-addon">
-                                    </div>
-                                    <label>Password</label>
-                                    <div class="mb-3">
-                                        <input type="password" class="form-control" name="password"
-                                            placeholder="Password" aria-label="Password"
-                                            aria-describedby="password-addon">
-                                    </div>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="rememberMe" checked="">
-                                        <label class="form-check-label" for="rememberMe">Remember me</label>
-                                    </div>    
-                                  <button type="submit" class="btn btn-primary">Sign in</button>
-                                    
-                                </form>
-                           
-                            
-                        </div>
-                        <div class="modal-footer">
-                            <p class="text-dark">Don't have an account? 
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signupModal">Login</button>
-                            </p>
-                        </div>
-                    </div>
-                </div>
+
+            <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                <img src="/sb/bg2.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                    alt="...">
             </div>
-            <!-- sign up end -->
-            <!-- Modal -->
+
+            <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                <img src="/sb/bg3.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                    alt="...">
+            </div>
+
+            <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                <img src="/sb/bg4.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                    alt="...">
+            </div>
+
+
+            <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                <img src="/sb/bg5.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                    alt="...">
+            </div>
+
+            <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                <img src="/sb/bg6.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                    alt="...">
+            </div>
+
+            <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                <img src="/sb/bg7.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                    alt="...">
+            </div>
+
+            <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                <img src="/sb/bg8.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                    alt="...">
+            </div>
+
+
+            <!-- Slider indicators -->
+            <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
+                <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1"
+                    data-carousel-slide-to="0"></button>
+                <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2"
+                    data-carousel-slide-to="1"></button>
+                <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3"
+                    data-carousel-slide-to="2"></button>
+                <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 4"
+                    data-carousel-slide-to="3"></button>
+                <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 5"
+                    data-carousel-slide-to="4"></button>
+            </div>
+            <!-- Slider controls -->
+            <button type="button"
+                class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                data-carousel-prev>
+                <span
+                    class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                    <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M5 1 1 5l4 4" />
+                    </svg>
+                    <span class="sr-only">Previous</span>
+                </span>
+            </button>
+            <button type="button"
+                class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                data-carousel-next>
+                <span
+                    class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                    <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 9 4-4-4-4" />
+                    </svg>
+                    <span class="sr-only">Next</span>
+                </span>
+            </button>
         </div>
-    </header>
 
- 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+    </div>
+    <section class="py-10 text-center bg-gray-100">
+        <br><br>
+        <div class="container mx-auto px-4">
+            <h1 class="text-4xl font-bold text-gray-800">Express Yourself Through Your Creativity</h1>
+            <p class="text-lg text-gray-600 mt-2">Join our professional SB RAJ DANCE AND FITNESS FACTORY today!</p>
+            <a href="/classes"
+                class="mt-4 inline-block bg-blue-500 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-blue-600 transition duration-300">
+                Explore Classes
+            </a>
+        </div>
+        <br><br>
+    </section>
+    <br>
+    <br>
 
-</html>
+    
+    <section >
+        <section class="container mx-auto flex flex-col lg:flex-row items-center gap-8 px-4 lg:px-8">
+            <!-- Text Content (50%) -->
+
+            <div class="w-full lg:w-1/2">
+                <article class="format lg:format-lg">
+                    <h1 class="text-3xl font-bold">Dance</h1>
+                    <p class="lead text-gray-700">Dance is a beautiful form of expression that combines movement,
+                        rhythm, and emotion. It enhances physical fitness, flexibility, and mental well-being while
+                        allowing individuals to tell stories through motion.</p>
+                    <p>Whether you enjoy classical, contemporary, or hip-hop dance, each style offers a unique way to
+                        connect with yourself and others. Dance is not just an art form but also a great way to relieve
+                        stress, boost confidence, and stay active.</p>
+                </article>
+            </div>
+
+            <!-- Image (50%) -->
+            <div class="w-full lg:w-1/2 flex justify-center">
+                <img src="sb/dance.jpg" alt="Dance Performance" class="rounded-lg shadow-lg">
+            </div>
+        </section>
+        <br><br>
+        <section class="container mx-auto flex flex-col lg:flex-row items-center gap-8 px-4 lg:px-8">
+            <!-- Image (50%) -->
+            <div class="w-full lg:w-1/2 flex justify-center">
+                <img src="sb/painting.jpg" alt="Dance Performance" class="rounded-lg shadow-lg">
+            </div>
+            <!-- Text Content (50%) -->
+            <div class="w-full lg:w-1/2">
+                <article class="format lg:format-lg">
+                    <h1 class="text-3xl font-bold">Paiting</h1>
+                    <p class="lead text-gray-700">Painting is a therapeutic activity that enables individuals to express
+                        their thoughts and emotions through colors and brush strokes. Whether you’re a beginner or an
+                        experienced artist, painting enhances creativity, sharpens focus, and provides a sense of
+                        accomplishment. The act of blending colors and creating art can be a peaceful escape from daily
+                        stress.</p>
+                </article>
+            </div>
+        </section>
+        <br><br>
+
+        <section class="container mx-auto flex flex-col lg:flex-row items-center gap-8 px-4 lg:px-8">
+            <!-- Text Content (50%) -->
+            <div class="w-full lg:w-1/2">
+                <article class="format lg:format-lg">
+                    <h1 class="text-3xl font-bold">Physical Activity</h1>
+                    <p class="lead text-gray-700">Stay Active, Stay Healthy
+                        <ol>
+                            <li>Martial art</li>
+                            <li>Boxing</li>
+                            <li>zymnastic</li>
+                        </ol>
+                    </p>
+                    <p>Engaging in physical activities like jogging, aerobics, or gym workouts is crucial for maintaining a healthy body and mind. Regular exercise improves cardiovascular health, strengthens muscles, and boosts overall energy levels. It also releases endorphins, which are natural mood enhancers, keeping stress and anxiety at bay.</p>
+                </article>
+            </div>
+
+            <!-- Image (50%) -->
+            <div class="w-full lg:w-1/2 flex justify-center">
+                <img src="sb/physical.jpg" alt="Dance Performance" class="rounded-lg shadow-lg">
+            </div>
+        </section>
+        <br><br>
+        <section class="container mx-auto flex flex-col lg:flex-row items-center gap-8 px-4 lg:px-8">
+            <!-- Image (50%) -->
+            <div class="w-full lg:w-1/2 flex justify-center">
+                <img src="sb/singing.jpg" alt="Dance Performance" class="rounded-lg shadow-lg">
+            </div>
+            <!-- Text Content (50%) -->
+            <div class="w-full lg:w-1/2">
+                <article class="format lg:format-lg">
+                    <h1 class="text-3xl font-bold">Singing</h1>
+                    <p class="lead text-gray-700">Music for the Soul
+                        <ol>
+                            <li>Harmonium</li>
+                            <li>Guitar</li>
+                        </ol>
+                    </p>
+                    <p>Singing is not only a way to entertain but also a powerful means of self-expression. It enhances
+                        breathing techniques, improves posture, and strengthens vocal cords. Singing also uplifts the
+                        mood, reduces stress, and fosters emotional connection. Whether you sing professionally or just
+                        for fun, it’s a wonderful way to relax and express yourself.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="container mx-auto flex flex-col lg:flex-row items-center gap-8 px-4 lg:px-8">
+            <!-- Text Content (50%) -->
+            <div class="w-full lg:w-1/2">
+                <article class="format lg:format-lg">
+                    <h1 class="text-3xl font-bold">Yoga</h1>
+                    <p class="lead text-gray-700">The Path to Inner Peace</p>
+                    <p>Yoga is a holistic practice that combines physical postures, breathing exercises, and meditation.
+                        It helps in increasing flexibility, improving concentration, and reducing stress. Yoga also
+                        promotes mindfulness, which enhances overall well-being. Practicing yoga regularly can bring
+                        balance to both body and mind.</p>
+                </article>
+            </div>
+
+            <!-- Image (50%) -->
+            <div class="w-full lg:w-1/2 flex justify-center">
+                <img src="sb/yoga.jpg" alt="Dance Performance" class="rounded-lg shadow-lg">
+            </div>
+        </section>
+        <br><br>
+        <section class="container mx-auto flex flex-col lg:flex-row items-center gap-8 px-4 lg:px-8">
+            <!-- Image (50%) -->
+            <div class="w-full lg:w-1/2 flex justify-center">
+                <img src="sb/zumba.jpg" alt="Dance Performance" class="rounded-lg shadow-lg">
+            </div>
+            <!-- Text Content (50%) -->
+            <div class="w-full lg:w-1/2">
+                <article class="format lg:format-lg">
+                    <h1 class="text-3xl font-bold">Zumba</h1>
+                    <p class="lead text-gray-700">Fun-Filled Fitness</p>
+                    <p>Zumba is a dance-based fitness program that combines energetic movements with lively music. It is
+                        a fantastic way to burn calories while having fun. Zumba workouts are designed to improve
+                        cardiovascular health, increase endurance, and tone muscles. The vibrant energy of Zumba classes
+                        makes fitness enjoyable and accessible to all age groups.</p>
+                </article>
+            </div>
+
+
+        </section>
+        <br>
+        <br>
+
+    </section>

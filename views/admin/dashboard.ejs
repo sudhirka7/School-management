@@ -1,575 +1,76 @@
 <% layout("/layouts/boilerplate.ejs") %>
-  <div class="container">
-    <div class="row mt-3">
-      <div class="col-sm-4 mb-3 mb-sm-0">
-        <div class="card">
-          <div class="card-body text-center">
-            <h5 class="card-title">No of Students</h5>
-            <p class="card-text">
-              <%=countCS%>
-            </p>
-            <div class="btn btn-outline-primary"><a class="btn btn-primary" data-bs-toggle="collapse" href="#studentall"
-                role="button" aria-expanded="true" aria-controls="studentall">let's</a>
-              <a class="btn btn-primary" href="#studentall">See</a>
-            </div>
 
 
-          </div>
+  <section class="py-10 bg-gray-100">
+    <br><br>
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+        <div class="bg-white shadow-lg rounded-lg p-6">
+          <h3 class="text-2xl font-semibold text-gray-800">Total student</h3>
+           
+          <a href="/enrollstudent"
+          class="mt-4 inline-block bg-blue-500 text-white px-5 py-2 rounded-lg hover:bg-blue-600 transition duration-300"><%=count[0]%></a>
         </div>
-      </div>
-      <div class="col-sm-4">
-        <div class="card text-center">
-          <div class="card-body">
-            <h5 class="card-title">No of rooms</h5>
-            <p class="card-text">
-              <%=roomsno %>
-            </p>
-            <div class="btn btn-outline-primary">
-              <a class="btn btn-primary" data-bs-toggle="collapse" href="#roomsall" role="button" aria-expanded="true"
-                aria-controls="roomsall">Let's</a>
-              <a class="btn btn-primary" href="#roomsall">See</a>
+        <% const features=["Dance", "Paiting" , "Physical Activity" ,"Singing","Yoga", "Zumba"]; %>
+        <% let i = 1; %>
+          <% features.forEach(function(style) { %>
+            <div class="bg-white shadow-lg rounded-lg p-6">
+              <h3 class="text-2xl font-semibold text-gray-800">
+                <%= style %>
+              </h3>
+
+             <a href="/enrollstudent"
+                class="mt-4 inline-block bg-blue-500 text-white px-5 py-2 rounded-lg hover:bg-blue-600 transition duration-300"><%=count[i++]%></a>
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-4">
-        <div class="card text-center">
-          <div class="card-body">
-            <h5 class="card-title">AVAILABLE</h5>
-            <p class="card-text">
-              <%=avaroomsno%>
-            </p>
-            <div class="btn btn-outline-primary">
-              <a class="btn btn-primary " data-bs-toggle="collapse" href="#roomsall" role="button" aria-expanded="true"
-                aria-controls="roomsall">Let's</a>
-              <a class="btn btn-primary" href="#roomsall">See</a>
-            </div>
-          </div>
-        </div>
+            <% }); %>
       </div>
     </div>
+    <br><br>
+  </section>
 
-  </div>
-  <!-- for student -->
-  <div class="container mt-3">
-    <hr>
-    <p class="d-inline-flex gap-1">
-    <div class="btn btn-outline-primary ">
-      <a class="btn btn-primary" data-bs-toggle="collapse" href="#boya" role="button" aria-expanded="false"
-        aria-controls="boya">Boys A</a><a class="btn btn-primary" href="#boya">See</a>
-    </div>
 
-    <div class="btn btn-outline-primary">
-      <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#boyb"
-        aria-expanded="false" aria-controls="boyb">Boys B</button><a class="btn btn-primary" href="#boyb">See</a>
-    </div>
-    <div class="btn btn-outline-primary">
-      <a class="btn btn-primary" data-bs-toggle="collapse" href="#girla" role="button" aria-expanded="false"
-        aria-controls="girla">Girls A</a><a class="btn btn-primary" href="#girla">See</a>
-    </div>
+  <table class="w-full min-w-full bg-white border border-gray-300 rounded-lg overflow-hidden">
+    <thead class="bg-gray-200">
+        <tr>
+            <th class="py-3 px-4 border-b text-left">ID</th>
+            <th class="py-3 px-4 border-b text-left">Student Name</th>
+            <th class="py-3 px-4 border-b text-left">Parent Name</th>
+            <th class="py-3 px-4 border-b text-left">Address</th>
+          
+            <th class="py-3 px-4 border-b text-left">Email</th>
+            <th class="py-3 px-4 border-b text-left">Phone</th>
+            <th class="py-3 px-4 border-b text-left">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% if (students.length > 0) { %>
+            <% let count = 1; %>
+            <% for (let student of students) { %>
+                <tr class="border-b hover:bg-gray-100" style="text-transform: capitalize;">
+                    <td class="py-3 px-4"><%= count++ %></td>
+                    <td class="py-3 px-4"><%= student.studentName %></td>
+                    <td class="py-3 px-4"><%= student.parentName %></td>
+                    <td class="py-3 px-4"><%= student.address %></td>
+                    
+                    <td class="py-3 px-4"><%= student.email %></td>
+                    <td class="py-3 px-4"><%= student.callingNumber %></td>
+                    <td class="py-3 px-4 text-red-600 font-semibold">
+                        | <a href="/admin/view/<%= student._id %>">View</a>
+                    </td>
+                </tr>
+            <% } %>
+        <% } else { %>
+            <tr>
+                <td colspan="8" class="text-center py-4">No data found</td>
+            </tr>
+        <% } %>
+    </tbody>
+     
+</table>
+<br><br>
 
-    </p>
-  </div>
-  <div class="container-fluid">
-    <div class="row">
-      <!-- First Collapsible Section -->
-      <div class="col-12">
-        <div class="collapse multi-collapse show" id="boya">
-          <h1 class="text-center text-success">Student List Boys A</h1>
-          <div class="card card-body">
-            <div class="table-responsive mt-3">
-              <table class="table table-bordered table-hover text-center">
-                <thead class="table-dark">
-                  <tr>
-                    <th>Picture</th>
-                    <th>Name</th>
-                    <th>Registration Number</th>
-                    <th>Home District</th>
-                    <th>Mobile No</th>
-                    <th>Father's Name</th>
-                    <th>Mother's Name</th>
-                    <th>Father's Contact</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% if (students.length> 0) { %>
-                    <% for (let student of students) { %>
-                      <% if (student.room && String(student.room.hostel_name).trim()=="Boys A" ) { %>
-                        <tr>
-                          <td>
-                            <img src="<%= student.image_url || '/img/default-avatar.png' %>" alt="<%= student.name %>"
-                              class="rounded-circle" height="30px">
-                          </td>
-                          <td>
-                            <%= student.name %>
-                          </td>
-                          <td>
-                            <%= student.roll_no %>
-                          </td>
-                          <td>
-                            <%= student.district %>
-                          </td>
-                          <td>
-                            <%= student.contact_no %>
-                          </td>
-                          <td>
-                            <%= student.father_name %>
-                          </td>
-                          <td>
-                            <%= student.mother_name %>
-                          </td>
-                          <td>
-                            <%= student.father_contact || "NA" %>
-                          </td>
-                        </tr>
-                        <% } %>
-                          <% } %>
-                            <% } else { %>
-                              <tr>
-                                <td colspan="8" class="text-center text-secondary">No students found.</td>
-                              </tr>
-                              <% } %>
-                </tbody>
+  
 
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
+ 
 
-      <!-- Second Collapsible Section -->
-      <div class="col-12">
-        <div class="collapse multi-collapse" id="boyb">
-          <h1 class="text-center text-success">Student List Boys B</h1>
-          <div class="card card-body">
-            <div class="table-responsive mt-3">
-              <table class="table table-bordered table-hover text-center">
-                <thead class="table-dark">
-                  <tr>
-                    <th>Picture</th>
-                    <th>Name</th>
-                    <th>Registration Number</th>
-                    <th>Home District</th>
-                    <th>Mobile No</th>
-                    <th>Father's Name</th>
-                    <th>Mother's Name</th>
-                    <th>Father's Contact</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% if (students.length> 0) { %>
-                    <% for (let student of students) { %>
-                      <% if (student.room && student.room.hostel_name==="Boys B" ) { %>
-                        <tr>
-                          <td>
-                            <img src="<%= student.image_url || '/img/default-avatar.png' %>" alt="<%= student.name %>"
-                              class="rounded-circle" height="30px">
-                          </td>
-                          <td>
-                            <%= student.name %>
-                          </td>
-                          <td>
-                            <%= student.roll_no %>
-                          </td>
-                          <td>
-                            <%= student.district %>
-                          </td>
-                          <td>
-                            <%= student.contact_no %>
-                          </td>
-                          <td>
-                            <%= student.father_name %>
-                          </td>
-                          <td>
-                            <%= student.mother_name %>
-                          </td>
-                          <td>
-                            <%= student.father_contact || "NA" %>
-                          </td> <!-- Simplified -->
-                        </tr>
-                        <% } %>
-                          <% } %>
-                            <% } else { %>
-                              <tr>
-                                <td colspan="8" class="text-center text-secondary">No students found.</td>
-                              </tr>
-                              <% } %>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- third collapsible section -->
-      <div class="col-12">
-        <div class="collapse multi-collapse" id="girla">
-          <h1 class="text-center text-success">Student List Girls A</h1>
-          <div class="card card-body">
-            <div class="table-responsive mt-3">
-              <table class="table table-bordered table-hover text-center">
-                <thead class="table-dark">
-                  <tr>
-                    <th>Picture</th>
-                    <th>Name</th>
-                    <th>Registration Number</th>
-                    <th>Home District</th>
-                    <th>Mobile No</th>
-                    <th>Father's Name</th>
-                    <th>Mother's Name</th>
-                    <th>Father's Contact</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% if (students.length> 0) { %>
-                    <% for (let student of students) { %>
-                      <% if (student.room && student.room.hostel_name==="Girls A" ) { %>
-                        <tr>
-                          <td>
-                            <img src="<%= student.image_url || '/img/default-avatar.png' %>" alt="<%= student.name %>"
-                              class="rounded-circle" height="30px">
-                          </td>
-                          <td>
-                            <%= student.name %>
-                          </td>
-                          <td>
-                            <%= student.roll_no %>
-                          </td>
-                          <td>
-                            <%= student.district %>
-                          </td>
-                          <td>
-                            <%= student.contact_no %>
-                          </td>
-                          <td>
-                            <%= student.father_name %>
-                          </td>
-                          <td>
-                            <%= student.mother_name %>
-                          </td>
-                          <td>
-                            <%= student.father_contact || "NA" %>
-                          </td> <!-- Simplified -->
-                        </tr>
-                        <% } %>
-                          <% } %>
-                            <% } else { %>
-                              <tr>
-                                <td colspan="8" class="text-center text-secondary">No students found.</td>
-                              </tr>
-                              <% } %>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- for Rooms -->
-
-  <div class="container mt-3">
-    <hr>
-    <p class="d-inline-flex gap-1">
-    <div class="btn btn-outline-primary">
-      <a class="btn btn-primary" data-bs-toggle="collapse" href="#boyarooms" role="button" aria-expanded="true"
-        aria-controls="boyarooms">Boys A</a><a class="btn btn-primary" href="#boyarooms">See</a>
-    </div>
-    <div class="btn btn-outline-primary">
-      <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#boybrooms"
-        aria-expanded="false" aria-controls="boybrooms">Boys B</button><a class="btn btn-primary"
-        href="#boybrooms">See</a>
-    </div>
-
-    <div class="btn btn-outline-primary">
-      <a class="btn btn-primary" data-bs-toggle="collapse" href="#girlarooms" role="button" aria-expanded="false"
-        aria-controls="girlarooms">Girls A</a><a class="btn btn-primary" href="#girlarooms">See</a>
-    </div>
-    </p>
-
-  </div>
-  <!-- for rooms -->
-  <div class="container-fluid">
-    <div class="row">
-      <!-- First Collapsible Section -->
-      <!-- <--boys a -->
-      <div class="col-12">
-        <div class="collapse multi-collapse show" id="boyarooms">
-          <h1 class="text-center text-success">Rooms Available in Boys A</h1>
-          <div class="card card-body">
-            <div class="table-responsive mt-3">
-              <table class="table table-bordered table-hover text-center">
-                <thead class="table-dark">
-                  <tr>
-                    <th>S.No</th>
-                    <th>Hostel Name</th>
-                    <th>Room No</th>
-                    <th>Bed No</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% let filteredRooms=rooms .filter(room=> room.hostel_name === "Boys A" ).filter(room=> room.status
-                    === "F") // Filter by hostel name
-                    .sort((a,b)=>a.bedNo - b.bedNo).sort((a, b) => a.roomNo - b.roomNo); // Sort by room number
-
-                    if (filteredRooms.length > 0) {
-                    %><% let i=0;%>
-                      <% filteredRooms.forEach(room=> { %>
-                        <% i++ %>
-                          <tr>
-                            <td>
-                              <%=i%>
-                            </td>
-                            <td>
-                              <%= room.hostel_name %>
-                            </td>
-                            <td>
-                              <%= room.roomNo %>
-                            </td>
-                            <td>
-                              <%= room.bedNo %>
-                            </td>
-                          </tr>
-                          <% }) %>
-                            <% } else { %>
-                              <tr>
-                                <td colspan="8" class="text-center text-secondary">No students found.</td>
-                              </tr>
-                              <% } %>
-
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- boys b -->
-      <div class="col-12">
-        <div class="collapse multi-collapse" id="boybrooms">
-          <h1 class="text-center text-success">Rooms Available in Boys B</h1>
-          <div class="card card-body">
-            <div class="table-responsive mt-3">
-              <table class="table table-bordered table-hover text-center">
-                <thead class="table-dark">
-                  <tr>
-                    <th>S.No</th>
-                    <th>Hostel Name</th>
-                    <th>Room No</th>
-                    <th>Bed No</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% let filteredRooms1=rooms .filter(room=> room.hostel_name === "Boys B").filter(room=> room.status
-                    === "F") // Filter by hostel name
-                    .sort((a,b)=>a.bedNo - b.bedNo).sort((a, b) => a.roomNo - b.roomNo); // Sort by room number
-
-                    if (filteredRooms1.length > 0) {
-                    %><% let i=0;%>
-                      <% filteredRooms1.forEach(room=> { %>
-                        <% i++ %>
-                          <tr>
-                            <td>
-                              <%=i%>
-                            </td>
-                            <td>
-                              <%= room.hostel_name %>
-                            </td>
-                            <td>
-                              <%= room.roomNo %>
-                            </td>
-                            <td>
-                              <%= room.bedNo %>
-                            </td>
-                          </tr>
-                          <% }) %>
-                            <% } else { %>
-                              <tr>
-                                <td colspan="8" class="text-center text-secondary">No students found.</td>
-                              </tr>
-                              <% } %>
-
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- girls a -->
-      <div class="col-12">
-        <div class="collapse multi-collapse" id="girlarooms">
-          <h1 class="text-center text-success">Rooms Available in Girls A</h1>
-          <div class="card card-body">
-            <div class="table-responsive mt-3">
-              <table class="table table-bordered table-hover text-center">
-                <thead class="table-dark">
-                  <tr>
-                    <th>S.No</th>
-                    <th>Hostel Name</th>
-                    <th>Room No</th>
-                    <th>Bed No</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% let filteredRooms2=rooms .filter(room=> room.hostel_name === "Girls A").filter(room=> room.status
-                    === "F") // Filter by hostel name
-                    .sort((a,b)=>a.bedNo - b.bedNo).sort((a, b) => a.roomNo - b.roomNo); // Sort by room number
-
-                    if (filteredRooms2.length > 0) {
-                    %><% let i=0;%>
-                      <% filteredRooms2.forEach(room=> { %>
-                        <% i++ %>
-                          <tr>
-                            <td>
-                              <%=i%>
-                            </td>
-                            <td>
-                              <%= room.hostel_name %>
-                            </td>
-                            <td>
-                              <%= room.roomNo %>
-                            </td>
-                            <td>
-                              <%= room.bedNo %>
-                            </td>
-                          </tr>
-                          <% }) %>
-                            <% } else { %>
-                              <tr>
-                                <td colspan="8" class="text-center text-secondary">No students found.</td>
-                              </tr>
-                              <% } %>
-
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- all students -->
-  <div class="container-fluid">
-    <div class="row">
-      <!-- First Collapsible Section -->
-      <div class="col-12">
-        <div class="collapse multi-collapse" id="studentall">
-          <h1 class="text-center text-success">All Student</h1>
-          <div class="card card-body">
-            <div class="table-responsive mt-3">
-              <table class="table table-bordered table-hover text-center">
-                <thead class="table-dark">
-                  <tr>
-                    <th>Picture</th>
-                    <th>Name</th>
-                    <th>Registration Number</th>
-                    <th>Home District</th>
-                    <th>Mobile No</th>
-                    <th>Father's Name</th>
-                    <th>Mother's Name</th>
-                    <th>Father's Contact</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% if (students.length> 0) { %>
-                    <% for (let student of students) { %>
-                      <tr>
-                        <td>
-                          <img src="<%= student.image_url || '/img/default-avatar.png' %>" alt="<%= student.name %>"
-                            class="rounded-circle" height="30px">
-                        </td>
-                        <td>
-                          <%= student.name %>
-                        </td>
-                        <td>
-                          <%= student.roll_no %>
-                        </td>
-                        <td>
-                          <%= student.district %>
-                        </td>
-                        <td>
-                          <%= student.contact_no %>
-                        </td>
-                        <td>
-                          <%= student.father_name %>
-                        </td>
-                        <td>
-                          <%= student.mother_name %>
-                        </td>
-                        <td>
-                          <%= student.father_contact ? student.father_contact : "NA" %>
-                        </td>
-                      </tr>
-                      <% } %>
-                        <% } else { %>
-                          <tr>
-                            <td colspan="8" class="text-center text-secondary">No students found.</td>
-                          </tr>
-                          <% } %>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="container-fluid">
-    <div class="row">
-      <!-- First Collapsible Section -->
-      <div class="col-12">
-        <div class="collapse multi-collapse" id="roomsall">
-          <h1 class="text-center text-success"> All Rooms</h1>
-          <div class="card card-body">
-            <div class="table-responsive mt-3">
-              <table class="table table-bordered table-hover text-center">
-                <thead class="table-dark">
-                  <tr>
-                    <th>S.No</th>
-                    <th>Hostel Name</th>
-                    <th>Room No</th>
-                    <th>Bed No</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% let filteredRooms3=rooms .filter(room=> room.status
-                    === "F") // Filter by hostel name
-                    .sort((a,b)=>a.bedNo - b.bedNo).sort((a, b) => a.roomNo - b.roomNo); // Sort by room number
-
-                    if (filteredRooms3.length > 0) {
-                    %><% let i=0;%>
-                      <% filteredRooms3.forEach(room=> { %>
-                        <% i++ %>
-                          <tr>
-                            <td>
-                              <%=i%>
-                            </td>
-                            <td>
-                              <%= room.hostel_name %>
-                            </td>
-                            <td>
-                              <%= room.roomNo %>
-                            </td>
-                            <td>
-                              <%= room.bedNo %>
-                            </td>
-                          </tr>
-                          <% }) %>
-                            <% } else { %>
-                              <tr>
-                                <td colspan="8" class="text-center text-secondary">No students found.</td>
-                              </tr>
-                              <% } %>
-
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
+  

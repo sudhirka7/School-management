@@ -1,40 +1,114 @@
-<!-- not use -->
-
 <% layout("/layouts/boilerplate.ejs") %>
-    <div class="form_box">
-        <form action="/admin/billing/<%=student._id %>" method="POST">
 
-            <label for="studentId" class="form-label">Student ID:</label>
-            <input type="text" class="form-control" value="<%= student.studentId %>" id="studentId" name="studentId"
-                required>
+<div class="max-w-lg mx-auto bg-white shadow-lg rounded-lg p-6">
+    <h2 class="text-2xl font-semibold text-center mb-4">Billing Form</h2>
 
-            <label for="studentName" class="form-label">Student Name:</label>
-            <input type="text" class="form-control" value="<%= student.name %>" id="studentName" name="studentName"
-                required>
+    <form action="/admin/billing/<%= student._id %>" method="POST" class="space-y-4">
+        <!-- Student Name -->
+        <div>
+            <label for="studentname" class="block text-gray-700 font-medium">Student Name:</label>
+            <input type="text" id="studentName" name="studentName" value="<%= student.studentName %>"
+                class="w-full border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500" required>
+        </div>
 
-            <label for="roomNumber" class="form-label">Room Number:</label>
-            <input type="text" class="form-control" value="<%= student.room.roomNo %>" id="roomNumber" name="roomNumber"
-                required>
+        <!-- Parent Name -->
+        <div>
+            <label for="parentName" class="block text-gray-700 font-medium">Parent Name:</label>
+            <input type="text" id="parentName" name="parentName" value="<%= student.parentName %>"
+                class="w-full border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500" required>
+        </div>
 
-            <label for="roomNumber" class="form-label">Dues Balance:</label>
-            <input type="text" class="form-control" value="<%= student.duespayment %>" id="roomNumber" name="dues"
-                required>
+        <!-- Dues Balance -->
+        <div>
+            <label for="dues" class="block text-gray-700 font-medium">Dues Balance:</label>
+            <input type="number" id="dues" name="dues" value="<%= student.duespayment %>"
+                class="w-full border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500" required>
+        </div>
 
-            <label for="roomRent" class="form-label">Bed Charge (₹):</label>
-            <input type="number" class="form-control" id="roomRent" name="roomRent" required>
+        <!-- Fees -->
+        <div>
+            <label for="admission" class="block text-gray-700 font-medium">Admission Fee (₹):</label>
+            <input type="number" id="admission" name="admission"
+                class="w-full border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 fee-input" required>
+        </div>
 
-            <label for="utilities" class="form-label">Other Charge (₹):</label>
-            <input type="number" class="form-control" id="utilities" name="utilities" required>
+        <div>
+            <label for="tuition" class="block text-gray-700 font-medium">Tuition Fee (₹):</label>
+            <input type="number" id="tuition" name="tuition"
+                class="w-full border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 fee-input" required>
+        </div>
 
-            <label for="securityDeposit" class="form-label">Security Deposit (₹):</label>
-            <input type="number" class="form-control" id="securityDeposit" name="securityDeposit" required>
+        <div>
+            <label for="other" class="block text-gray-700 font-medium">Other Charges (₹):</label>
+            <input type="number" id="other" name="other"
+                class="w-full border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 fee-input" required>
+        </div>
 
-            <label for="amountPaid" class="form-label">Amount Paid (₹):</label>
-            <input type="number" class="form-control" id="amountPaid" name="amountPaid" required>
+        <div>
+            <label for="securityDeposit" class="block text-gray-700 font-medium">Security Deposit (₹):</label>
+            <input type="number" id="securityDeposit" name="securityDeposit"
+                class="w-full border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 fee-input" required>
+        </div>
 
-            <label for="payment_month" class="form-label">Payment of Month:</label>
-            <input type="date" class="form-control" id="payment_month" name="payment_month" required>
+        <!-- Payment Month -->
+        <div>
+            <label for="payment_month" class="block text-gray-700 font-medium">Payment of Month:</label>
+            <input type="date" id="payment_month" name="payment_month"
+                class="w-full border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500" required>
+        </div>
 
-            <button type="submit" class="btn btn-success w-100">Generate Bill</button>
-        </form>
-    </div>
+        <!-- Total Amount -->
+        <div>
+            <label for="totalAmount" class="block text-gray-700 font-medium">Total Amount (₹):</label>
+            <input type="number" id="totalAmount" name="totalAmount" readonly
+                class="w-full border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 bg-gray-100">
+        </div>
+
+        <!-- Amount Paid -->
+        <div>
+            <label for="amountPaid" class="block text-gray-700 font-medium">Amount Paid (₹):</label>
+            <input type="number" id="amountPaid" name="amountPaid"
+                class="w-full border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500" required>
+        </div>
+
+        <!-- Dues Now -->
+        <div>
+            <label for="duesNow" class="block text-gray-700 font-medium">Dues Now (₹):</label>
+            <input type="number" id="duesNow" name="balanceDue" readonly
+                class="w-full border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 bg-gray-100">
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit"
+            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-lg transition duration-300">
+            Generate Bill
+        </button>
+    </form>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        function calculateTotal() {
+            let admission = parseFloat(document.getElementById("admission").value) || 0;
+            let tuition = parseFloat(document.getElementById("tuition").value) || 0;
+            let other = parseFloat(document.getElementById("other").value) || 0;
+            let securityDeposit = parseFloat(document.getElementById("securityDeposit").value) || 0;
+            let dues = parseFloat(document.getElementById("dues").value) || 0;
+            let amountPaid = parseFloat(document.getElementById("amountPaid").value) || 0;
+
+            let totalAmount = admission + tuition + other + securityDeposit + dues;
+            let duesNow = totalAmount - amountPaid;
+
+            document.getElementById("totalAmount").value = totalAmount.toFixed(2);
+            document.getElementById("duesNow").value = duesNow.toFixed(2);
+        }
+
+        // Update total whenever inputs change
+        document.querySelectorAll(".fee-input, #amountPaid").forEach(input => {
+            input.addEventListener("input", calculateTotal);
+        });
+
+        // Initial calculation in case values are prefilled
+        calculateTotal();
+    });
+</script>
