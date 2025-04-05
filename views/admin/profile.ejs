@@ -16,7 +16,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <p><strong>DOB:</strong> <%= student.dob ? new Date(student.dob).toISOString().split('T')[0] : 'Not Provided' %></p>
 
-                    <p><strong>Joining Date:</strong> <%= student.joinDate || 'Not Provided' %></p>
+                    <p><strong>Joining Date:</strong> <%= student.joinDate ? new Date(student.joinDate).toISOString().split('T')[0] : 'Not Provided' %></p>
                     <p><strong>Gender:</strong> <%= student.gender || 'Not Provided' %></p>
                     <p><strong>Phone:</strong> <%= student.callingNumber || 'Not Provided' %></p>
                     <p><strong>Address:</strong> <%= student.address || 'Not Provided' %></p>

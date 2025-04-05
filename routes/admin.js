@@ -51,11 +51,11 @@ router.get("/dashboard", authMiddleware, async (req, res) => {
     const students = await Student.find({}); 
     const all = await Student.countDocuments({}); 
     const dance = await Student.countDocuments({category:"dance"}); 
-    const singing = await Student.countDocuments({category:"dance"}); 
-    const physical = await Student.countDocuments({category:"dance"}); 
-    const zumba = await Student.countDocuments({category:"dance"}); 
-    const painting = await Student.countDocuments({category:"dance"}); 
-    const yoga = await Student.countDocuments({category:"dance"}); 
+    const singing = await Student.countDocuments({category:"singing"}); 
+    const physical = await Student.countDocuments({category:"physical"}); 
+    const zumba = await Student.countDocuments({category:"zumba"}); 
+    const painting = await Student.countDocuments({category:"painting"}); 
+    const yoga = await Student.countDocuments({category:"yoga"}); 
     const count = [all,dance, painting, physical, singing, yoga, zumba];
     console.log(count[0]);
 
