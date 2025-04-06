@@ -39,6 +39,7 @@
           
             <th class="py-3 px-4 border-b text-left">Email</th>
             <th class="py-3 px-4 border-b text-left">Phone</th>
+            <th class="py-3 px-4 border-b text-left">Dues</th>
             <th class="py-3 px-4 border-b text-left">Action</th>
         </tr>
     </thead>
@@ -54,6 +55,7 @@
                     
                     <td class="py-3 px-4"><%= student.email %></td>
                     <td class="py-3 px-4"><%= student.callingNumber %></td>
+                    <td class="py-3 px-4"><%= student.duespayment %></td>
                     <td class="py-3 px-4 text-red-600 font-semibold">
                         | <a href="/admin/view/<%= student._id %>">View</a>
                     </td>

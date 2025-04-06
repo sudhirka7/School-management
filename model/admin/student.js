@@ -65,6 +65,10 @@ const studentSchema = new mongoose.Schema(
       type: String,
       default: "/img/default-profile.jpg",
     },
+    duespayment:{
+      type:Number,
+      default:0,
+    }
   },
   { timestamps: true }
 );

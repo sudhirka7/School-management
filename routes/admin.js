@@ -151,6 +151,24 @@ router.get("/Edit/:id", authMiddleware, async (req, res) => {
     const student = await Student.findById(req.params.id);
     res.render("admin/studentform.ejs", { student });
 });
+router.post("/Edit/:id", authMiddleware, async (req, res) => {
+    const {id} = req.params;
+    const {studentName, parentName, relation, gender, address, callingNumber, whatAppNumber, category} = req.body;
+
+    await Student.findById({_id:id,
+        $set:{
+            studentName,
+            parentName,
+            relation,
+            gender, 
+            address, 
+            callingNumber,
+             whatAppNumber,
+             category,            
+        }
+    })
+    res.render("admin/studentform.ejs", { student });
+});
 
 router.get("/delete/:id", authMiddleware, checkuser, async (req, res) => {
     const receipts = await Billing.find({ studentId: req.params.id });
