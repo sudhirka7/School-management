@@ -30,12 +30,13 @@
             </div>
         </div>
     </div>
-    
+    <% if(userType == "adminWallah"){ %>
     <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-lg mt-6" style="display: flex; justify-content: space-around;">
        <a href="/admin/billing/<%=student._id %>"> Add Reciept</a> 
        <a href="/admin/Edit/<%=student._id %>"> Edit Student Details</a> 
        <a href="/admin/delete/<%=student._id %>"> Delete Student and Reciept</a> 
     </div>
+    <% } %>
     <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-lg mt-6">
         <h2 class="text-xl font-bold text-center bg-green-500 text-white py-3 rounded-t-lg">Payment Details</h2>
         <div class="overflow-x-auto">

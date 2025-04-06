@@ -1,10 +1,11 @@
 const express = require("express");
+const bcrypt = require("bcrypt");
 const Student = require("../model/admin/student.js");
+const Admin = require("../model/admin/sign-up");
 const router = express.Router();
-const session = require("express-session");
 const flash = require("connect-flash");
 
-
+// Auth middleware
 const authMiddleware = (req, res, next) => {
     if (!req.session.user) {
         return res.redirect("/admin/sign-in");
@@ -12,15 +13,16 @@ const authMiddleware = (req, res, next) => {
     next();
 };
 
-router.get("/registration",authMiddleware, async (req, res)=>{
+// Registration page
+router.get("/registration", authMiddleware, async (req, res) => {
     res.render("student/registration.ejs");
 });
 
 // Register Student
 router.post("/register", async (req, res) => {
     try {
-         
-        const {studentName,
+        const {
+            studentName,
             parentName,
             callingNumber,
             whatAppNumber,
@@ -32,18 +34,24 @@ router.post("/register", async (req, res) => {
             category,
             age,
             joinDate,
-            } = req.body; 
+        } = req.body;
 
         if (!email) {
-            return res.status(400).json({ error: "Invalid student details" });
+            req.flash("error", "Email is required.");
+            return res.redirect("/student/registration");
         }
 
-        const student = await Student.findOne({ email: email });
-        if(student){
-            return res.status(400).json({ error: "Gmail allready exist!" });
+        // Check if user already exists in either Admin or Student
+        const studentExists = await Student.findOne({ email });
+        const adminExists = await Admin.findOne({ email });
+
+        if (studentExists || adminExists) {
+            req.flash("error", "Email already exists!");
+            return res.redirect("/student/registration");
         }
-        
-        const user = new Student({
+
+        // Save Student
+        const newStudent = new Student({
             studentName,
             parentName,
             callingNumber,
@@ -58,20 +66,26 @@ router.post("/register", async (req, res) => {
             joinDate,
         });
 
-        try {
-            await user.save();
-            req.flash("success", "Your form was submitted successfully!");
-            res.redirect("/admin/dashboard");
-        } catch (error) {
-            req.flash("error", "Form submission failed. Please try again.");
-            res.redirect("/admin/form");
-        }
+        // Save login credentials for student
+        const hashedPassword = await bcrypt.hash("12345", 10);
+        const loginCred = new Admin({
+            name: studentName,
+            email,
+            password: hashedPassword,
+            userType: "student" // Add userType to differentiate roles
+        });
+
+        await newStudent.save();
+        await loginCred.save();
+
+        req.flash("success", "Student registered successfully!");
+        res.redirect("/admin/dashboard");
 
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: "Internal Server Error" });
+        req.flash("error", "Internal server error.");
+        res.redirect("/student/registration");
     }
 });
-
 
 module.exports = router;
