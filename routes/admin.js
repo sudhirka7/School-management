@@ -69,17 +69,55 @@ router.post("/sign-in", async (req, res) => {
         req.session.user = user;
 
         if (user.userType === "adminWallah") {
+            req.flash("success", "Logged in");
             return res.redirect("/admin/dashboard");
         } else {
             const student = await Student.findOne({ email: user.email });
             if (!student) {
                 return res.render("error.ejs", { msg: "Student not found.", link: "/admin/sign-in" });
             }
+            req.flash("success", "Login successfully!");
             return res.redirect(`/admin/view/${student._id}`);
         }
     } catch (error) {
         console.error("Login Error:", error);
         res.render("error.ejs", { msg: "Something went wrong.", link: "/admin/sign-in" });
+    }
+});
+router.get("/forget", (req, res)=>{
+    res.render("admin/forget.ejs");
+});
+ 
+
+router.post("/forget", async (req, res) => {
+    const { name, email, password } = req.body;
+
+    try {
+        const user = await Admin.findOne({ email });
+
+        if (!user || user.name !== name) {
+            return res.render("error.ejs", {
+                msg: "User name not Match please check",
+                link: "/admin/forget"
+            });
+        }
+
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        await Admin.findOneAndUpdate(
+            { email },
+            { $set: { password: hashedPassword } }
+        );
+
+        req.flash("success", "Password updated successfully!");
+        res.redirect("/admin/sign-in");
+
+    } catch (error) {
+        console.error("Forget Password Error:", error);
+        res.render("error.ejs", {
+            msg: "Something went wrong. Please try again.",
+            link: "/admin/forget"
+        });
     }
 });
 
